@@ -1,0 +1,37 @@
+symbol,name,thesis,weight
+META,Meta Platforms,AI,14
+GOOG,Alphabet,AI,14
+TSM,TSMC,AI,14
+FRPT,Freshpet,Pets,3
+TRUP,Trupanion,Pets,3
+IDXX,IDEXX Laboratories,Pets,3
+ELAN,Elanco Animal Health,Pets,3
+ZTS,Zoetis,Pets,3
+LLY,Eli Lilly,GLP-1,6
+NVO,Novo Nordisk,GLP-1,4
+BANB.SW,Bachem,GLP-1,3
+VKTX,Viking Therapeutics,GLP-1,1
+GPCR,Structure Therapeutics,GLP-1,1
+XYL,Xylem,Water,2
+CNM,Core & Main,Water,2
+MWA,Mueller Water Products,Water,2
+BMI,Badger Meter,Water,2
+TTEK,Tetra Tech,Water,2
+6861.T,Keyence,Robotics,0.8
+6383.T,Daifuku,Robotics,0.8
+6481.T,THK,Robotics,0.8
+CGNX,Cognex,Robotics,0.8
+RSW.L,Renishaw,Robotics,0.8
+OUST,Ouster,Robotics,0.8
+NOVT,Novanta,Robotics,0.8
+RRX,Regal Rexnord,Robotics,0.8
+SHA0.DE,Schaeffler,Robotics,0.8
+6268.T,Nabtesco,Robotics,0.8
+CCXI,Agility Robotics (via Churchill Capital XI),Robotics,0.8
+108490.KQ,Robotis,Robotics,0.8
+688017.SS,Laifual Drive,Robotics,0.8
+9880.HK,UBTech Robotics,Robotics,0.8
+AVAV,AeroVironment,Robotics,0.8
+MUV2.DE,Munich Re,Reinsurers,2
+SREN.SW,Swiss Re,Reinsurers,2
+RNR,RenaissanceRe,Reinsurers,2
