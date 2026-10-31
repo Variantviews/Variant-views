@@ -1,4 +1,4 @@
-## Hi there 👋
+## Investment theses and portfolio tracker
 
 <!--
 **Variantviews/Variantviews** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
