@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Variant Views</title>
+<meta name="description" content="Investment theses, each held in a model portfolio from the day it was published and measured against SPY and QQQ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="#main">Variant Views</a>
+    <nav aria-label="Main">
+      <a href="#portfolio">Portfolio</a>
+      <a href="#theses">Theses</a>
+      <a href="#method">Method</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="terminal" id="portfolio" aria-label="Model portfolio">
+    <div class="wrap">
+      <div class="quote">
+        <p class="quote-name">Model portfolio <span>index, 100 on 2 Nov 2026</span></p>
+        <p class="quote-price num" id="q-price">100.00</p>
+        <p class="quote-change num" id="q-change"></p>
+      </div>
+
+      <div class="chart" id="chart"></div>
+      <div class="legend" aria-hidden="true">
+        <span><i class="key key-port"></i>Portfolio</span>
+        <span><i class="key key-spy"></i>SPY</span>
+        <span><i class="key key-qqq"></i>QQQ</span>
+      </div>
+
+      <div class="block">
+        <h2 class="panel-h">Allocation</h2>
+        <div class="treemap" id="treemap"></div>
+        <p class="panel-note">Size is weight in the portfolio. Colour is return relative to SPY since inception.</p>
+      </div>
+
+      <div class="block" id="theses">
+        <h2 class="panel-h">Theses</h2>
+        <div class="book-head" aria-hidden="true"><span>Thesis</span><span class="r">Weight</span><span class="r">Return</span></div>
+        <div class="book" id="book"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reading first" id="method">
+    <div class="wrap">
+      <h2 class="section-h">Method</h2>
+      <dl class="method">
+        <div><dt>Holding period</dt><dd>Buy and hold from 2 November 2026. Weights drift with prices and are never reset.</dd></div>
+        <div><dt>Returns</dt><dd>Total return including dividends, converted to US dollars at daily exchange rates.</dd></div>
+        <div><dt>Benchmarks</dt><dd>SPY and QQQ on the same total-return basis. Both are US-only; the portfolio holds companies worldwide.</dd></div>
+        <div><dt>Data</dt><dd>Daily closing prices from Yahoo Finance, updated each weekday after the US close. The portfolio is simulated.</dd></div>
+        <div><dt>Record</dt><dd>Holdings, weights and every daily update are kept in a <a href="https://github.com/Variantviews/Variant-views">dated public history</a>.</dd></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer id="about">
+  <div class="wrap">
+    <p class="author">Written by Kai [SURNAME], MSc Finance at the London School of Economics. [Contact link]</p>
+    <p>Personal research for educational purposes. Not investment advice and not an offer of any investment product.</p>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
