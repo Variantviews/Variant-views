@@ -72,18 +72,22 @@ function buildTheses(holdings, latest) {
 }
 
 // ---- Quote header ---------------------------------------------------------------
+const START_VALUE = 1000000;
+const usd = (x) => "$" + Math.round(Math.abs(x)).toLocaleString("en-US");
+
 function renderQuote(perf, latest) {
   const priceEl = $("#q-price"), changeEl = $("#q-change");
   if (!perf || !perf.length || !latest) {
-    priceEl.textContent = "100.00";
+    priceEl.textContent = usd(START_VALUE);
     changeEl.innerHTML = `<span class="asof">Tracking starts on ${START_TEXT}.</span>`;
     return;
   }
-  const last = perf[perf.length - 1].Portfolio;
-  const change = last - 100;
-  priceEl.textContent = last.toFixed(2);
-  changeEl.className = `quote-change num ${dir(change, 2)}`;
-  changeEl.innerHTML = `${sign(round(change, 2))}${Math.abs(change).toFixed(2)} (${pct(change, 2)}) <span class="asof">since inception, updated ${esc(day(latest.as_of))}</span>`;
+  const value = (START_VALUE * perf[perf.length - 1].Portfolio) / 100;
+  const change = value - START_VALUE;
+  const changePct = (change / START_VALUE) * 100;
+  priceEl.textContent = usd(value);
+  changeEl.className = `quote-change num ${dir(changePct, 2)}`;
+  changeEl.innerHTML = `${sign(round(change, 0))}${usd(change)} (${pct(changePct, 2)}) <span class="asof">since inception, updated ${esc(day(latest.as_of))}</span>`;
 }
 
 // ---- Chart --------------------------------------------------------------------
@@ -161,7 +165,7 @@ function drawChart(perf) {
     const box = el.getBoundingClientRect();
     const i = n === 1 ? 0 : Math.max(0, Math.min(n - 1, Math.round(((e.clientX - box.left - m.l) / iw) * (n - 1))));
     cursor.setAttribute("x1", X(i)); cursor.setAttribute("x2", X(i)); cursor.setAttribute("visibility", "visible");
-    tip.innerHTML = `<strong>${esc(day(dates[i]))}</strong><br>` +
+    tip.innerHTML = `<strong>${esc(day(dates[i]))}</strong><br>Value <span class="num">${usd(START_VALUE * rows[i].Portfolio / 100)}</span><br>` +
       series.map((s) => `${s.name} <span class="num">${pct(s.values[i], 2)}</span>`).join("<br>");
     tip.style.display = "block";
     const tw = tip.offsetWidth;
