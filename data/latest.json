@@ -1,0 +1,430 @@
+{
+  "inception": "2026-11-02",
+  "as_of": "2026-11-02",
+  "portfolio_return_pct": 0.0,
+  "benchmarks": {
+    "SPY": 0.0,
+    "QQQ": 0.0
+  },
+  "theses": [
+    {
+      "thesis": "Alphabet",
+      "target_weight": 14.0,
+      "current_weight": 14.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0
+    },
+    {
+      "thesis": "GLP-1",
+      "target_weight": 15.0,
+      "current_weight": 15.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0
+    },
+    {
+      "thesis": "META",
+      "target_weight": 14.0,
+      "current_weight": 14.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0
+    },
+    {
+      "thesis": "Pets",
+      "target_weight": 15.0,
+      "current_weight": 15.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0
+    },
+    {
+      "thesis": "Reinsurers",
+      "target_weight": 6.0,
+      "current_weight": 6.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0
+    },
+    {
+      "thesis": "Robotics",
+      "target_weight": 12.0,
+      "current_weight": 12.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0
+    },
+    {
+      "thesis": "TSMC",
+      "target_weight": 14.0,
+      "current_weight": 14.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0
+    },
+    {
+      "thesis": "Water",
+      "target_weight": 10.0,
+      "current_weight": 10.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0
+    }
+  ],
+  "positions": [
+    {
+      "symbol": "META",
+      "name": "Meta Platforms",
+      "thesis": "META",
+      "target_weight": 14.0,
+      "current_weight": 14.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet",
+      "thesis": "Alphabet",
+      "target_weight": 14.0,
+      "current_weight": 14.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "TSM",
+      "name": "TSMC",
+      "thesis": "TSMC",
+      "target_weight": 14.0,
+      "current_weight": 14.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "FRPT",
+      "name": "Freshpet",
+      "thesis": "Pets",
+      "target_weight": 3.0,
+      "current_weight": 3.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "TRUP",
+      "name": "Trupanion",
+      "thesis": "Pets",
+      "target_weight": 3.0,
+      "current_weight": 3.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "IDXX",
+      "name": "IDEXX Laboratories",
+      "thesis": "Pets",
+      "target_weight": 3.0,
+      "current_weight": 3.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "ELAN",
+      "name": "Elanco Animal Health",
+      "thesis": "Pets",
+      "target_weight": 3.0,
+      "current_weight": 3.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "ZTS",
+      "name": "Zoetis",
+      "thesis": "Pets",
+      "target_weight": 3.0,
+      "current_weight": 3.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "LLY",
+      "name": "Eli Lilly",
+      "thesis": "GLP-1",
+      "target_weight": 6.0,
+      "current_weight": 6.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "NVO",
+      "name": "Novo Nordisk",
+      "thesis": "GLP-1",
+      "target_weight": 4.0,
+      "current_weight": 4.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "BANB.SW",
+      "name": "Bachem",
+      "thesis": "GLP-1",
+      "target_weight": 3.0,
+      "current_weight": 3.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "VKTX",
+      "name": "Viking Therapeutics",
+      "thesis": "GLP-1",
+      "target_weight": 1.0,
+      "current_weight": 1.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "GPCR",
+      "name": "Structure Therapeutics",
+      "thesis": "GLP-1",
+      "target_weight": 1.0,
+      "current_weight": 1.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "XYL",
+      "name": "Xylem",
+      "thesis": "Water",
+      "target_weight": 2.0,
+      "current_weight": 2.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "CNM",
+      "name": "Core & Main",
+      "thesis": "Water",
+      "target_weight": 2.0,
+      "current_weight": 2.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "MWA",
+      "name": "Mueller Water Products",
+      "thesis": "Water",
+      "target_weight": 2.0,
+      "current_weight": 2.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "BMI",
+      "name": "Badger Meter",
+      "thesis": "Water",
+      "target_weight": 2.0,
+      "current_weight": 2.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "TTEK",
+      "name": "Tetra Tech",
+      "thesis": "Water",
+      "target_weight": 2.0,
+      "current_weight": 2.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "6861.T",
+      "name": "Keyence",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "6383.T",
+      "name": "Daifuku",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "6481.T",
+      "name": "THK",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "CGNX",
+      "name": "Cognex",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "RSW.L",
+      "name": "Renishaw",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "OUST",
+      "name": "Ouster",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "NOVT",
+      "name": "Novanta",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "RRX",
+      "name": "Regal Rexnord",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "SHA0.DE",
+      "name": "Schaeffler",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "6268.T",
+      "name": "Nabtesco",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "CCXI",
+      "name": "Agility Robotics (CCXI \u2192 AGLT after merger)",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "108490.KQ",
+      "name": "Robotis",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "3952.HK",
+      "name": "Zhejiang Laifual Drive",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "9880.HK",
+      "name": "UBTech Robotics",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "AVAV",
+      "name": "AeroVironment",
+      "thesis": "Robotics",
+      "target_weight": 0.8,
+      "current_weight": 0.8,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "MUV2.DE",
+      "name": "Munich Re",
+      "thesis": "Reinsurers",
+      "target_weight": 2.0,
+      "current_weight": 2.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "SREN.SW",
+      "name": "Swiss Re",
+      "thesis": "Reinsurers",
+      "target_weight": 2.0,
+      "current_weight": 2.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    },
+    {
+      "symbol": "RNR",
+      "name": "RenaissanceRe",
+      "thesis": "Reinsurers",
+      "target_weight": 2.0,
+      "current_weight": 2.0,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": false
+    }
+  ],
+  "missing_data": []
+}
