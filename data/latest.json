@@ -1,67 +1,67 @@
 {
   "inception": "2026-11-02",
-  "as_of": "2026-11-04",
-  "portfolio_return_pct": 2.34,
+  "as_of": "2026-11-05",
+  "portfolio_return_pct": -1.99,
   "benchmarks": {
-    "SPY": 1.96,
-    "QQQ": 1.59
+    "SPY": -2.54,
+    "QQQ": -5.0
   },
   "theses": [
     {
       "thesis": "Alphabet",
       "target_weight": 14.0,
-      "current_weight": 14.14,
-      "return_pct": 3.33,
-      "contribution_pp": 0.47
+      "current_weight": 14.47,
+      "return_pct": 1.33,
+      "contribution_pp": 0.19
     },
     {
       "thesis": "GLP-1",
       "target_weight": 15.0,
-      "current_weight": 14.81,
-      "return_pct": 1.04,
-      "contribution_pp": 0.16
+      "current_weight": 14.92,
+      "return_pct": -2.48,
+      "contribution_pp": -0.37
     },
     {
       "thesis": "META",
       "target_weight": 14.0,
-      "current_weight": 14.2,
-      "return_pct": 3.84,
-      "contribution_pp": 0.54
+      "current_weight": 14.25,
+      "return_pct": -0.27,
+      "contribution_pp": -0.04
     },
     {
       "thesis": "Pets",
       "target_weight": 15.0,
-      "current_weight": 15.48,
-      "return_pct": 5.64,
-      "contribution_pp": 0.85
+      "current_weight": 15.39,
+      "return_pct": 0.57,
+      "contribution_pp": 0.09
     },
     {
       "thesis": "Reinsurers",
       "target_weight": 6.0,
-      "current_weight": 5.9,
-      "return_pct": 0.71,
-      "contribution_pp": 0.04
+      "current_weight": 6.26,
+      "return_pct": 2.19,
+      "contribution_pp": 0.13
     },
     {
       "thesis": "Robotics",
       "target_weight": 12.0,
-      "current_weight": 11.74,
-      "return_pct": 0.1,
-      "contribution_pp": 0.01
+      "current_weight": 11.59,
+      "return_pct": -5.36,
+      "contribution_pp": -0.64
     },
     {
       "thesis": "TSMC",
       "target_weight": 14.0,
-      "current_weight": 13.58,
-      "return_pct": -0.72,
-      "contribution_pp": -0.1
+      "current_weight": 12.65,
+      "return_pct": -11.42,
+      "contribution_pp": -1.6
     },
     {
       "thesis": "Water",
       "target_weight": 10.0,
-      "current_weight": 10.14,
-      "return_pct": 3.8,
-      "contribution_pp": 0.38
+      "current_weight": 10.47,
+      "return_pct": 2.62,
+      "contribution_pp": 0.26
     }
   ],
   "positions": [
@@ -70,9 +70,9 @@
       "name": "Meta Platforms",
       "thesis": "META",
       "target_weight": 14.0,
-      "current_weight": 14.2,
-      "return_pct": 3.84,
-      "contribution_pp": 0.54,
+      "current_weight": 14.25,
+      "return_pct": -0.27,
+      "contribution_pp": -0.04,
       "data_missing": false
     },
     {
@@ -80,9 +80,9 @@
       "name": "Alphabet",
       "thesis": "Alphabet",
       "target_weight": 14.0,
-      "current_weight": 14.14,
-      "return_pct": 3.33,
-      "contribution_pp": 0.47,
+      "current_weight": 14.47,
+      "return_pct": 1.33,
+      "contribution_pp": 0.19,
       "data_missing": false
     },
     {
@@ -90,9 +90,9 @@
       "name": "TSMC",
       "thesis": "TSMC",
       "target_weight": 14.0,
-      "current_weight": 13.58,
-      "return_pct": -0.72,
-      "contribution_pp": -0.1,
+      "current_weight": 12.65,
+      "return_pct": -11.42,
+      "contribution_pp": -1.6,
       "data_missing": false
     },
     {
@@ -100,9 +100,9 @@
       "name": "Freshpet",
       "thesis": "Pets",
       "target_weight": 3.0,
-      "current_weight": 3.0,
-      "return_pct": 2.4,
-      "contribution_pp": 0.07,
+      "current_weight": 2.85,
+      "return_pct": -6.9,
+      "contribution_pp": -0.21,
       "data_missing": false
     },
     {
@@ -110,9 +110,9 @@
       "name": "Trupanion",
       "thesis": "Pets",
       "target_weight": 3.0,
-      "current_weight": 3.21,
-      "return_pct": 9.51,
-      "contribution_pp": 0.29,
+      "current_weight": 3.46,
+      "return_pct": 12.91,
+      "contribution_pp": 0.39,
       "data_missing": false
     },
     {
@@ -120,9 +120,9 @@
       "name": "IDEXX Laboratories",
       "thesis": "Pets",
       "target_weight": 3.0,
-      "current_weight": 3.05,
-      "return_pct": 4.01,
-      "contribution_pp": 0.12,
+      "current_weight": 3.06,
+      "return_pct": -0.14,
+      "contribution_pp": -0.0,
       "data_missing": false
     },
     {
@@ -130,9 +130,9 @@
       "name": "Elanco Animal Health",
       "thesis": "Pets",
       "target_weight": 3.0,
-      "current_weight": 3.08,
-      "return_pct": 5.02,
-      "contribution_pp": 0.15,
+      "current_weight": 3.01,
+      "return_pct": -1.74,
+      "contribution_pp": -0.05,
       "data_missing": false
     },
     {
@@ -140,9 +140,9 @@
       "name": "Zoetis",
       "thesis": "Pets",
       "target_weight": 3.0,
-      "current_weight": 3.14,
-      "return_pct": 7.24,
-      "contribution_pp": 0.22,
+      "current_weight": 3.02,
+      "return_pct": -1.29,
+      "contribution_pp": -0.04,
       "data_missing": false
     },
     {
@@ -150,9 +150,9 @@
       "name": "Eli Lilly",
       "thesis": "GLP-1",
       "target_weight": 6.0,
-      "current_weight": 5.89,
-      "return_pct": 0.5,
-      "contribution_pp": 0.03,
+      "current_weight": 5.92,
+      "return_pct": -3.28,
+      "contribution_pp": -0.2,
       "data_missing": false
     },
     {
@@ -160,9 +160,9 @@
       "name": "Novo Nordisk",
       "thesis": "GLP-1",
       "target_weight": 4.0,
-      "current_weight": 4.08,
-      "return_pct": 4.28,
-      "contribution_pp": 0.17,
+      "current_weight": 4.07,
+      "return_pct": -0.37,
+      "contribution_pp": -0.01,
       "data_missing": false
     },
     {
@@ -170,9 +170,9 @@
       "name": "Bachem",
       "thesis": "GLP-1",
       "target_weight": 3.0,
-      "current_weight": 2.85,
-      "return_pct": -2.71,
-      "contribution_pp": -0.08,
+      "current_weight": 3.01,
+      "return_pct": -1.8,
+      "contribution_pp": -0.05,
       "data_missing": false
     },
     {
@@ -180,9 +180,9 @@
       "name": "Viking Therapeutics",
       "thesis": "GLP-1",
       "target_weight": 1.0,
-      "current_weight": 1.02,
-      "return_pct": 4.25,
-      "contribution_pp": 0.04,
+      "current_weight": 0.98,
+      "return_pct": -3.88,
+      "contribution_pp": -0.04,
       "data_missing": false
     },
     {
@@ -190,9 +190,9 @@
       "name": "Structure Therapeutics",
       "thesis": "GLP-1",
       "target_weight": 1.0,
-      "current_weight": 0.97,
-      "return_pct": -0.54,
-      "contribution_pp": -0.01,
+      "current_weight": 0.95,
+      "return_pct": -6.79,
+      "contribution_pp": -0.07,
       "data_missing": false
     },
     {
@@ -200,9 +200,9 @@
       "name": "Xylem",
       "thesis": "Water",
       "target_weight": 2.0,
-      "current_weight": 2.03,
-      "return_pct": 3.9,
-      "contribution_pp": 0.08,
+      "current_weight": 2.1,
+      "return_pct": 2.87,
+      "contribution_pp": 0.06,
       "data_missing": false
     },
     {
@@ -210,9 +210,9 @@
       "name": "Core & Main",
       "thesis": "Water",
       "target_weight": 2.0,
-      "current_weight": 2.1,
-      "return_pct": 7.71,
-      "contribution_pp": 0.15,
+      "current_weight": 2.12,
+      "return_pct": 3.99,
+      "contribution_pp": 0.08,
       "data_missing": false
     },
     {
@@ -220,9 +220,9 @@
       "name": "Mueller Water Products",
       "thesis": "Water",
       "target_weight": 2.0,
-      "current_weight": 1.96,
-      "return_pct": 0.08,
-      "contribution_pp": 0.0,
+      "current_weight": 2.09,
+      "return_pct": 2.54,
+      "contribution_pp": 0.05,
       "data_missing": false
     },
     {
@@ -230,9 +230,9 @@
       "name": "Badger Meter",
       "thesis": "Water",
       "target_weight": 2.0,
-      "current_weight": 2.03,
-      "return_pct": 3.84,
-      "contribution_pp": 0.08,
+      "current_weight": 2.06,
+      "return_pct": 1.18,
+      "contribution_pp": 0.02,
       "data_missing": false
     },
     {
@@ -240,9 +240,9 @@
       "name": "Tetra Tech",
       "thesis": "Water",
       "target_weight": 2.0,
-      "current_weight": 2.02,
-      "return_pct": 3.46,
-      "contribution_pp": 0.07,
+      "current_weight": 2.09,
+      "return_pct": 2.5,
+      "contribution_pp": 0.05,
       "data_missing": false
     },
     {
@@ -250,9 +250,9 @@
       "name": "Keyence",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.78,
-      "return_pct": 0.39,
-      "contribution_pp": 0.0,
+      "current_weight": 0.79,
+      "return_pct": -3.25,
+      "contribution_pp": -0.03,
       "data_missing": false
     },
     {
@@ -261,8 +261,8 @@
       "thesis": "Robotics",
       "target_weight": 0.8,
       "current_weight": 0.76,
-      "return_pct": -2.98,
-      "contribution_pp": -0.02,
+      "return_pct": -6.9,
+      "contribution_pp": -0.06,
       "data_missing": false
     },
     {
@@ -270,9 +270,9 @@
       "name": "THK",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.77,
-      "return_pct": -2.08,
-      "contribution_pp": -0.02,
+      "current_weight": 0.75,
+      "return_pct": -7.58,
+      "contribution_pp": -0.06,
       "data_missing": false
     },
     {
@@ -280,9 +280,9 @@
       "name": "Cognex",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.74,
-      "return_pct": -5.94,
-      "contribution_pp": -0.05,
+      "current_weight": 0.69,
+      "return_pct": -15.8,
+      "contribution_pp": -0.13,
       "data_missing": false
     },
     {
@@ -290,9 +290,9 @@
       "name": "Renishaw",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.75,
-      "return_pct": -4.34,
-      "contribution_pp": -0.03,
+      "current_weight": 0.74,
+      "return_pct": -9.24,
+      "contribution_pp": -0.07,
       "data_missing": false
     },
     {
@@ -300,9 +300,9 @@
       "name": "Ouster",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.93,
-      "return_pct": 18.85,
-      "contribution_pp": 0.15,
+      "current_weight": 0.88,
+      "return_pct": 8.15,
+      "contribution_pp": 0.07,
       "data_missing": false
     },
     {
@@ -310,9 +310,9 @@
       "name": "Novanta",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.78,
-      "return_pct": -0.69,
-      "contribution_pp": -0.01,
+      "current_weight": 0.74,
+      "return_pct": -9.86,
+      "contribution_pp": -0.08,
       "data_missing": false
     },
     {
@@ -320,9 +320,9 @@
       "name": "Regal Rexnord",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.84,
-      "return_pct": 7.74,
-      "contribution_pp": 0.06,
+      "current_weight": 0.81,
+      "return_pct": -0.39,
+      "contribution_pp": -0.0,
       "data_missing": false
     },
     {
@@ -330,8 +330,8 @@
       "name": "Schaeffler",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.74,
-      "return_pct": -4.89,
+      "current_weight": 0.78,
+      "return_pct": -4.6,
       "contribution_pp": -0.04,
       "data_missing": false
     },
@@ -340,9 +340,9 @@
       "name": "Nabtesco",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.76,
-      "return_pct": -3.14,
-      "contribution_pp": -0.03,
+      "current_weight": 0.77,
+      "return_pct": -5.24,
+      "contribution_pp": -0.04,
       "data_missing": false
     },
     {
@@ -350,19 +350,19 @@
       "name": "Agility Robotics (CCXI \u2192 AGLT after merger)",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.95,
-      "return_pct": 21.21,
-      "contribution_pp": 0.17,
-      "data_missing": false
+      "current_weight": 0.82,
+      "return_pct": 0.0,
+      "contribution_pp": 0.0,
+      "data_missing": true
     },
     {
       "symbol": "108490.KQ",
       "name": "Robotis",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.7,
-      "return_pct": -10.76,
-      "contribution_pp": -0.09,
+      "current_weight": 0.68,
+      "return_pct": -16.27,
+      "contribution_pp": -0.13,
       "data_missing": false
     },
     {
@@ -370,9 +370,9 @@
       "name": "Zhejiang Laifual Drive",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.76,
-      "return_pct": -2.64,
-      "contribution_pp": -0.02,
+      "current_weight": 0.85,
+      "return_pct": 3.7,
+      "contribution_pp": 0.03,
       "data_missing": false
     },
     {
@@ -380,9 +380,9 @@
       "name": "UBTech Robotics",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.77,
-      "return_pct": -1.26,
-      "contribution_pp": -0.01,
+      "current_weight": 0.85,
+      "return_pct": 3.92,
+      "contribution_pp": 0.03,
       "data_missing": false
     },
     {
@@ -390,9 +390,9 @@
       "name": "AeroVironment",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.72,
-      "return_pct": -8.0,
-      "contribution_pp": -0.06,
+      "current_weight": 0.68,
+      "return_pct": -17.06,
+      "contribution_pp": -0.14,
       "data_missing": false
     },
     {
@@ -400,9 +400,9 @@
       "name": "Munich Re",
       "thesis": "Reinsurers",
       "target_weight": 2.0,
-      "current_weight": 1.97,
-      "return_pct": 0.7,
-      "contribution_pp": 0.01,
+      "current_weight": 2.11,
+      "return_pct": 3.35,
+      "contribution_pp": 0.07,
       "data_missing": false
     },
     {
@@ -410,9 +410,9 @@
       "name": "Swiss Re",
       "thesis": "Reinsurers",
       "target_weight": 2.0,
-      "current_weight": 1.97,
-      "return_pct": 0.65,
-      "contribution_pp": 0.01,
+      "current_weight": 2.09,
+      "return_pct": 2.27,
+      "contribution_pp": 0.05,
       "data_missing": false
     },
     {
@@ -420,11 +420,13 @@
       "name": "RenaissanceRe",
       "thesis": "Reinsurers",
       "target_weight": 2.0,
-      "current_weight": 1.97,
-      "return_pct": 0.78,
+      "current_weight": 2.06,
+      "return_pct": 0.94,
       "contribution_pp": 0.02,
       "data_missing": false
     }
   ],
-  "missing_data": []
+  "missing_data": [
+    "CCXI"
+  ]
 }
