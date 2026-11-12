@@ -71,13 +71,16 @@ function buildTheses(holdings, latest, perf) {
       h.cost = (h.weight / 100) * START_VALUE;
       h.value = p && isNum(p.return_pct) ? h.cost * (1 + p.return_pct / 100) : null;
       h.current = p ? p.current_weight : null;
+      h.day = p && isNum(p.day_return_pct) ? p.day_return_pct : null;
+      h.dayGain = isNum(h.day) && isNum(h.value) ? h.value - h.value / (1 + h.day / 100) : null;
     });
     const col = `Thesis: ${g.name}`;
     const day = last && prev && isNum(last[col]) && isNum(prev[col]) ? (last[col] / prev[col] - 1) * 100 : null;
     const cost = (g.weight / 100) * START_VALUE;
+    const value = isNum(ret) ? cost * (1 + ret / 100) : null;
+    const dayGain = isNum(day) && isNum(value) ? value - value / (1 + day / 100) : null;
     return {
-      ...g, id: slug(g.name), ret, day, cost,
-      value: isNum(ret) ? cost * (1 + ret / 100) : null,
+      ...g, id: slug(g.name), ret, day, cost, value, dayGain,
       current: d ? d.current_weight : null,
     };
   });
@@ -304,6 +307,7 @@ function holdingRow(h) {
   return `<tr>
     <td><span class="co" title="${esc(h.symbol)}" tabindex="0">${esc(shortName(h.name))}</span><span class="co-tick">${esc(h.symbol)}</span></td>
     <td class="r num"><span class="v">${usd(h.cost)}</span><small>${wpct(h.weight, 1)}</small></td>
+    <td class="r num"><span class="v ${dir(h.day, 2)}">${usdSigned(h.dayGain)}</span><small class="${dir(h.day, 2)}">${pct(h.day, 2)}</small></td>
     <td class="r num"><span class="v ${dir(ret)}">${usdSigned(gain)}</span><small class="${dir(ret)}">${pct(ret)}</small></td>
     <td class="r num"><span class="v">${isNum(h.value) ? usd(h.value) : "–"}</span><small>${isNum(h.current) ? wpct(h.current, 1) : "–"}</small></td>
   </tr>`;
@@ -318,11 +322,12 @@ function renderBook(theses, content) {
     const total = multi ? `<tr class="total">
         <td>Total</td>
         <td class="r num"><span class="v">${usd(t.cost)}</span><small>${wpct(t.weight, 1)}</small></td>
+        <td class="r num"><span class="v ${dir(t.day, 2)}">${usdSigned(t.dayGain)}</span><small class="${dir(t.day, 2)}">${pct(t.day, 2)}</small></td>
         <td class="r num"><span class="v ${dir(t.ret)}">${usdSigned(gain)}</span><small class="${dir(t.ret)}">${pct(t.ret)}</small></td>
         <td class="r num"><span class="v">${isNum(t.value) ? usd(t.value) : "–"}</span><small>${isNum(t.current) ? wpct(t.current, 1) : "–"}</small></td>
       </tr>` : "";
     const table = `<div class="table-wrap"><table>
-        <thead><tr><th>Company</th><th class="r">Purchase value<small>Weight</small></th><th class="r">Total gain<small>Return</small></th><th class="r">Current value<small>Current weight</small></th></tr></thead>
+        <thead><tr><th>Company</th><th class="r">Purchase value<small>Weight</small></th><th class="r">Day gain<small>Day return</small></th><th class="r">Total gain<small>Return</small></th><th class="r">Current value<small>Current weight</small></th></tr></thead>
         <tbody>${t.holdings.map(holdingRow).join("")}${total}</tbody>
       </table></div>`;
     return `<details id="row-${t.id}" style="--tc:${t.color}">
