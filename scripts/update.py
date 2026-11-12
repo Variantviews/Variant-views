@@ -105,9 +105,18 @@ def main():
             if currency(s) == ccy:
                 prices[s] = prices[s] * fx
 
+    # Only keep days on which the US market has closed. Without this, a run in the
+    # early morning UK time (while Asian markets are trading) adds a half-finished
+    # day where most prices are just copied from the day before, so daily changes
+    # show as 0%.
+    prices = prices.sort_index()
+    us_days = prices.index[prices["SPY"].notna()]
+    if pd.Timestamp.now(tz="UTC").hour < 21:      # US close is 20:00 or 21:00 UTC
+        us_days = us_days[us_days < today]
+
     # Carry forward last price on each market's holidays
-    prices = prices.sort_index().ffill()
-    prices = prices[prices.index <= today]
+    prices = prices.ffill()
+    prices = prices[prices.index.isin(us_days) & (prices.index <= today)]
 
     before = prices[prices.index <= inception]
     if before.empty:
