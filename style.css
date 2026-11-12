@@ -214,7 +214,7 @@ a { color: var(--link); }
 .terminal td .v { font-weight: 600; }
 .terminal td small.up { color: var(--up); }
 .terminal td small.down { color: var(--down); }
-.co { cursor: default; text-decoration: underline dotted var(--t-muted); text-underline-offset: 3px; }
+.co { cursor: default; }
 .co-tick { display: none; font-size: 12px; color: var(--t-muted); }
 .co.show-tick + .co-tick { display: block; }
 .terminal tr.total td { border-top: 2px solid var(--t-muted); border-bottom: 0; padding-top: 9px; }
