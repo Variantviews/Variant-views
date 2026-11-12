@@ -212,6 +212,12 @@ a { color: var(--link); }
 .terminal th small, .terminal td small { display: block; font-size: 12px; font-weight: 500; color: var(--t-muted); }
 .terminal td { vertical-align: top; line-height: 1.35; }
 .terminal td .v { font-weight: 600; }
+.terminal td.r { white-space: nowrap; }
+@media (max-width: 480px) {
+  .terminal table { font-size: 13px; }
+  .terminal th, .terminal td { padding-right: 8px; }
+  .terminal th small, .terminal td small { font-size: 11px; }
+}
 .terminal td small.up { color: var(--up); }
 .terminal td small.down { color: var(--down); }
 .co { cursor: default; }
