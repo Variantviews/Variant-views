@@ -2,7 +2,8 @@ name: Update portfolio
 
 on:
   schedule:
-    - cron: "37 22 * * 1-5"   # main run: 22:37 UTC, Monday to Friday, after US close
+    - cron: "15 20 * * 1-5"   # 15 min after the US close in summer (US daylight saving time)
+    - cron: "15 21 * * 1-5"   # 15 min after the US close in winter
     - cron: "17 1 * * 2-6"    # backup run: 01:17 UTC the next morning, in case the first is delayed or skipped
   workflow_dispatch:           # adds a manual "Run workflow" button
 
