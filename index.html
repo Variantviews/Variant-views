@@ -5,23 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Variant Views</title>
 <meta name="description" content="Investment theses, each held in a model portfolio from the day it was published and measured against SPY and QQQ.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem("vv-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="top">
   <div class="wrap top-row">
-    <a class="brand" href="#main">Variant Views</a>
-    <nav aria-label="Main">
-      <a href="#portfolio">Portfolio</a>
-      <a href="#theses">Theses</a>
-      <a href="#method">Method</a>
-      <a href="#about">About</a>
-    </nav>
+    <a class="brand" href="#main" aria-label="Variant Views">
+      <svg class="brand-mark" viewBox="0 0 50.7 16" aria-hidden="true">
+        <polygon class="bm-d" points="8,2.25 12,8 8,13.75 4,8"/>
+        <polygon class="bm-d" points="18.4,2.25 22.4,8 18.4,13.75 14.4,8"/>
+        <polygon class="bm-d" points="28.8,2.25 32.8,8 28.8,13.75 24.8,8"/>
+        <polygon class="bm-g" points="40.57,4 40.57,12 34.82,8"/>
+        <polygon class="bm-g" points="41.33,4 41.33,12 47.08,8"/>
+      </svg>
+      <span class="brand-word" aria-hidden="true"><svg class="brand-v brand-v1" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,0 50,100 100,0"/></svg>ARIANT<span class="brand-space"></span><svg class="brand-v brand-v2" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,0 50,100 100,0"/></svg>IEWS</span>
+    </a>
+    <button type="button" class="theme-btn" id="theme-btn" aria-label="Switch between light and dark mode">
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
   </div>
 </header>
 
@@ -30,39 +39,50 @@
   <section class="terminal" id="portfolio" aria-label="Model portfolio">
     <div class="wrap">
       <div class="quote">
-        <p class="quote-name">Model portfolio <span>simulated, started with $1,000,000 on 2 Nov 2026</span></p>
-        <p class="quote-price num" id="q-price">$1,000,000</p>
+        <p class="quote-name">Model portfolio: <span>$1,000,000 simulated from November 2, 2026</span></p>
+        <p class="quote-line"><span class="quote-price num" id="q-price">$1,000,000</span><span class="quote-day num" id="q-day"></span></p>
         <p class="quote-change num" id="q-change"></p>
       </div>
 
-      <div class="chart" id="chart"></div>
-      <div class="legend" aria-hidden="true">
-        <span><i class="key key-port"></i>Portfolio</span>
-        <span><i class="key key-spy"></i>SPY</span>
-        <span><i class="key key-qqq"></i>QQQ</span>
+      <div class="chart-wrap">
+        <div class="legend" id="legend">
+          <span class="legend-fixed"><i class="key key-port"></i>Portfolio</span>
+          <button type="button" class="legend-btn" data-bench="SPY" aria-pressed="true"><i class="key key-spy"></i>SPY</button>
+          <button type="button" class="legend-btn" data-bench="QQQ" aria-pressed="true"><i class="key key-qqq"></i>QQQ</button>
+        </div>
+        <div class="chart" id="chart"></div>
       </div>
 
       <div class="block">
         <h2 class="panel-h">Allocation</h2>
         <div class="treemap" id="treemap"></div>
+        <div class="heat-tip" id="heat-tip" role="tooltip"></div>
       </div>
 
       <div class="block" id="theses">
         <h2 class="panel-h">Theses</h2>
-        <div class="book-head" aria-hidden="true"><span>Thesis</span><span class="r">Weight</span><span class="r">Return</span></div>
+        <div class="book-head" aria-hidden="true"><span>Thesis</span><span class="r">Current weight</span><span class="r">Return</span><span></span></div>
         <div class="book" id="book"></div>
       </div>
     </div>
   </section>
 
-  <section class="reading first" id="method">
+  <section class="reading first" id="philosophy">
+    <div class="wrap">
+      <h2 class="section-h">Philosophy</h2>
+      <div class="prose">
+        <p>[Philosophy text]</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reading" id="method">
     <div class="wrap">
       <h2 class="section-h">Method</h2>
       <dl class="method">
-        <div><dt>Holding period</dt><dd>Simulated $1,000,000 portfolio, bought on 2 November 2026 and held. Weights drift with prices and are never reset.</dd></div>
-        <div><dt>Returns</dt><dd>Total return including dividends, converted to US dollars at daily exchange rates.</dd></div>
-        <div><dt>Benchmarks</dt><dd>SPY and QQQ on the same total-return basis. Both are US-only; the portfolio holds companies worldwide.</dd></div>
-        <div><dt>Data</dt><dd>Daily closing prices from Yahoo Finance, updated each weekday after the US close. The portfolio is simulated.</dd></div>
+        <div><dt>Portfolio Weights</dt><dd>Determined at portfolio inception (November 2), and change purely based on price action (i.e. no adjustments or resets).</dd></div>
+        <div><dt>Returns</dt><dd>Total returns are calculated to include dividends, converted to USD at daily exchange rates.</dd></div>
+        <div><dt>Data</dt><dd>Daily closing prices from Yahoo Finance, updated each weekday after the US close.</dd></div>
         <div><dt>Record</dt><dd>Holdings, weights and every daily update are kept in a <a href="https://github.com/Variantviews/Variant-views">dated public history</a>.</dd></div>
       </dl>
     </div>
@@ -71,7 +91,7 @@
 
 <footer id="about">
   <div class="wrap">
-    <p class="author">Written by Kai Nechtelberger, MSc Finance at the London School of Economics. https://www.linkedin.com/in/kai-nechtelberger/</p>
+    <p class="author">Written by Kai Nechtelberger, MSc Finance at the London School of Economics. <a href="https://www.linkedin.com/in/kai-nechtelberger/" rel="noopener">LinkedIn</a></p>
     <p>Personal research for educational purposes. Not investment advice and not an offer of any investment product.</p>
   </div>
 </footer>
