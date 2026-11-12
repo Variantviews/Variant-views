@@ -111,8 +111,9 @@ def main():
     # show as 0%.
     prices = prices.sort_index()
     us_days = prices.index[prices["SPY"].notna()]
-    if pd.Timestamp.now(tz="UTC").hour < 21:      # US close is 20:00 or 21:00 UTC
-        us_days = us_days[us_days < today]
+    now_ny = pd.Timestamp.now(tz="America/New_York")   # handles US daylight saving
+    if (now_ny.hour, now_ny.minute) < (16, 10):        # US market closes at 16:00 New York time
+        us_days = us_days[us_days < pd.Timestamp(now_ny.date())]
 
     # Carry forward last price on each market's holidays
     prices = prices.ffill()
