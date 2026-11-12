@@ -156,6 +156,7 @@ def main():
 
     # Latest snapshot for the website
     last = hist.index[-1]
+    prev = hist.index[-2] if len(hist.index) > 1 else None
     theses = []
     for t in thesis_weights.index:
         tv = thesis_values.loc[last, t]
@@ -166,6 +167,7 @@ def main():
             "current_weight": round(float(tv / portfolio.loc[last] * 100), 2),
             "return_pct": pct(tv / tw),
             "contribution_pp": round(float((tv - tw) * 100), 2),
+            "day_return_pct": pct(tv / thesis_values.loc[prev, t]) if prev is not None else None,
         })
 
     positions = []
@@ -179,6 +181,7 @@ def main():
             "current_weight": round(float(pos_values.loc[last, s] / portfolio.loc[last] * 100), 2),
             "return_pct": pct(rel.loc[last, s]),
             "contribution_pp": round(float((pos_values.loc[last, s] - weights[s]) * 100), 2),
+            "day_return_pct": pct(rel.loc[last, s] / rel.loc[prev, s]) if prev is not None else None,
             "data_missing": s in missing,
         })
 
