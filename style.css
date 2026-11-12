@@ -161,8 +161,8 @@ a { color: var(--link); }
 .tile { position: absolute; display: block; padding: 2px; color: #FFFFFF; text-decoration: none; }
 .tile-in { height: 100%; border-radius: 4px; padding: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; overflow: hidden; }
 .tile:hover .tile-in { filter: brightness(1.12); }
-.tile-name { display: block; font-weight: 700; font-stretch: var(--cond); font-size: 28px; line-height: 1.1; }
-.tile-day { display: block; font-size: 18px; font-weight: 600; }
+.tile-name { display: block; font-weight: 500; font-stretch: var(--cond); font-size: 28px; line-height: 1.1; }
+.tile-day { display: block; font-size: 18px; font-weight: 400; }
 .tile.small .tile-name { font-size: 18px; }
 .tile.small .tile-day { font-size: 14px; }
 .tile.tiny .tile-name { font-size: 13px; overflow-wrap: anywhere; hyphens: auto; }
