@@ -253,10 +253,11 @@ function renderHeat(theses) {
   const W = el.clientWidth, H = el.clientHeight;
   if (!W || !H) return;
   const rects = squarify(theses.map((t) => ({ ...t, value: t.current ?? t.weight })), 0, 0, W, H);
+  const charW = parseFloat(getComputedStyle(el).getPropertyValue("--tile-char")) || 0.5;  // average letter width
   el.innerHTML = rects.map((r) => {
     const small = r.w < 130 || r.h < 90, tiny = r.w < 84 || r.h < 60;
     // Text grows and shrinks with the block: limited by its width (name length) and its height
-    const nameSize = Math.max(10, 0.85 * Math.min(52, (r.w - 16) / (Math.max(r.name.length, 4) * 0.5), r.h * 0.24));
+    const nameSize = Math.max(10, 0.85 * Math.min(52, (r.w - 16) / (Math.max(r.name.length, 4) * charW), r.h * 0.24));
     const daySize = Math.max(9.5, Math.min(26, nameSize * 0.62));
     const label = `${r.name}, ${isNum(r.day) ? `${pct(r.day)} today` : "no daily change yet"}`;
     return `<a class="tile${small ? " small" : ""}${tiny ? " tiny" : ""}" href="#row-${r.id}" data-row="row-${r.id}" data-id="${r.id}" aria-label="${esc(label)}"
