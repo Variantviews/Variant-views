@@ -279,7 +279,8 @@ function setupHeatTip(theses) {
     const t = byId[tile.dataset.id];
     const weightNow = isNum(t.current) ? wpct(t.current, 1) : wpct(t.weight, 1);
     const names = t.holdings.length > 1 ? `<br><b>Holdings:</b> ${t.holdings.map((h) => esc(shortName(h.name))).join(", ")}` : "";
-    tip.innerHTML = `<b>Total return:</b> <span class="num">${pct(t.ret)}</span><br><b>Weight:</b> <span class="num">${weightNow}</span>${names}`;
+    const val = usd(isNum(t.value) ? t.value : t.cost);
+    tip.innerHTML = `<b>Value:</b> <span class="num">${val}</span><br><b>Weight:</b> <span class="num">${weightNow}</span><br><b>Total return:</b> <span class="num">${pct(t.ret)}</span>${names}`;
     tip.style.display = "block";
     const box = block.getBoundingClientRect();
     let x = e.clientX - box.left + 14, y = e.clientY - box.top + 14;
@@ -334,7 +335,7 @@ function renderBook(theses, content) {
     return `<details id="row-${t.id}" style="--tc:${t.color}">
       <summary class="row-sum">
         <span><span class="b-name">${esc(t.name)}</span>${sub}</span>
-        <span class="b-weight num r">${weightNow}</span>
+        <span class="b-weight num r"><span class="b-val">${usd(isNum(t.value) ? t.value : t.cost)}</span><span class="b-w">${weightNow}</span></span>
         <span class="chip num ${dir(t.ret)}"><span class="chip-usd">${usdSigned(gain)}</span><span class="chip-pct">${pct(t.ret)}</span></span>
         <span class="chev" aria-hidden="true"></span>
       </summary>
