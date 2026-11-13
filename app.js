@@ -257,8 +257,8 @@ function renderHeat(theses) {
   el.innerHTML = rects.map((r) => {
     const small = r.w < 130 || r.h < 90, tiny = r.w < 84 || r.h < 60;
     // Text grows and shrinks with the block: limited by its width (name length) and its height
-    const nameSize = Math.max(10, 0.85 * Math.min(52, (r.w - 16) / (Math.max(r.name.length, 4) * charW), r.h * 0.24));
-    const daySize = Math.max(9.5, Math.min(26, nameSize * 0.62));
+    const nameSize = Math.max(9, 0.68 * Math.min(52, (r.w - 16) / (Math.max(r.name.length, 4) * charW), r.h * 0.24));
+    const daySize = Math.max(8.5, Math.min(21, nameSize * 0.62));
     const label = `${r.name}, ${isNum(r.day) ? `${pct(r.day)} today` : "no daily change yet"}`;
     return `<a class="tile${small ? " small" : ""}${tiny ? " tiny" : ""}" href="#row-${r.id}" data-row="row-${r.id}" data-id="${r.id}" aria-label="${esc(label)}"
       style="left:${(r.x / W) * 100}%;top:${(r.y / H) * 100}%;width:${(r.w / W) * 100}%;height:${(r.h / H) * 100}%">
