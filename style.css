@@ -272,8 +272,8 @@ th, td { text-align: left; padding: 7px 10px 7px 0; border-bottom: 1px solid var
 td.r, th.r { text-align: right; }
 .empty { margin: 0; padding: 20px 0; border-top: 1px solid var(--rule); color: var(--muted); }
 /* Method: key-facts list, label left and text right */
-dl.method { display: block; max-width: 880px; margin: 18px 0 0; border-top: 1px solid var(--rule); }
-dl.method > div { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 4px 32px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+dl.method { display: block; max-width: 1080px; margin: 18px 0 0; border-top: 1px solid var(--rule); }
+dl.method > div { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 4px 32px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
 dl.method dt { font-size: 15px; font-weight: 600; }
 dl.method dd { margin: 0; font-size: 15px; line-height: 1.6; }
 @media (max-width: 640px) { dl.method > div { grid-template-columns: 1fr; } }
