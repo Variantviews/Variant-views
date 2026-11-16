@@ -75,7 +75,9 @@ function buildTheses(holdings, latest, perf) {
       h.dayGain = isNum(h.day) && isNum(h.value) ? h.value - h.value / (1 + h.day / 100) : null;
     });
     const col = `Thesis: ${g.name}`;
-    const day = last && prev && isNum(last[col]) && isNum(prev[col]) ? (last[col] / prev[col] - 1) * 100 : null;
+    // Prefer the tracker's figure (each stock's latest session); fall back to the daily history
+    const day = d && isNum(d.day_return_pct) ? d.day_return_pct
+      : last && prev && isNum(last[col]) && isNum(prev[col]) ? (last[col] / prev[col] - 1) * 100 : null;
     const cost = (g.weight / 100) * START_VALUE;
     const value = isNum(ret) ? cost * (1 + ret / 100) : null;
     const dayGain = isNum(day) && isNum(value) ? value - value / (1 + day / 100) : null;
@@ -103,8 +105,9 @@ function renderQuote(perf, latest) {
   const change = value - START_VALUE;
   const changePct = (change / START_VALUE) * 100;
   priceEl.textContent = usd(value);
-  if (perf.length > 1) {
-    const day = (lastIdx / perf[perf.length - 2].Portfolio - 1) * 100;
+  if (isNum(latest.portfolio_day_return_pct) || perf.length > 1) {
+    const day = isNum(latest.portfolio_day_return_pct) ? latest.portfolio_day_return_pct
+      : (lastIdx / perf[perf.length - 2].Portfolio - 1) * 100;
     dayEl.className = `quote-day num ${dir(day, 2)}`;
     dayEl.textContent = pct(day, 2);
   } else {
@@ -299,8 +302,18 @@ function writeup(t, content) {
   const ms = (c.milestones || []).filter((m) => m && m.label);
   const milestones = ms.length
     ? `<ul class="milestones">${ms.map((m) => `<li><span>${esc(m.label)}</span><span class="status">${esc(m.status || "Watching")}</span></li>`).join("")}</ul>` : "";
+  // Sources: plain text, or { "text": "...", "url": "https://..." } to make an entry a link
+  const src = (c.sources || []).map((x) => (typeof x === "string" ? { text: x } : x)).filter((x) => x && x.text);
+  const safeUrl = (u) => (/^https?:\/\//i.test(u || "") ? u : null);
+  const sources = src.length
+    ? `<details class="sources"><summary>Sources (${src.length})<span class="chev" aria-hidden="true"></span></summary>
+        <ol>${src.map((x) => {
+          const u = safeUrl(x.url);
+          return `<li>${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(x.text)}</a>` : esc(x.text)}</li>`;
+        }).join("")}</ol></details>`
+    : "";
   return `<details class="writeup"><summary>Write-up<span class="chev" aria-hidden="true"></span></summary>
-    <div class="writeup-text">${text}${milestones}</div></details>`;
+    <div class="writeup-text">${text}${milestones}${sources}</div></details>`;
 }
 
 function holdingRow(h) {
