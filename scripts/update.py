@@ -115,6 +115,9 @@ def main():
     if (now_ny.hour, now_ny.minute) < (16, 10):        # US market closes at 16:00 New York time
         us_days = us_days[us_days < pd.Timestamp(now_ny.date())]
 
+    # Keep the unfilled USD prices for the daily-change figures below
+    raw = prices.copy()
+
     # Carry forward last price on each market's holidays
     prices = prices.ffill()
     prices = prices[prices.index.isin(us_days) & (prices.index <= today)]
@@ -156,7 +159,29 @@ def main():
 
     # Latest snapshot for the website
     last = hist.index[-1]
-    prev = hist.index[-2] if len(hist.index) > 1 else None
+
+    # Daily change: each stock's latest close against its own previous close,
+    # whichever day each market last traded (as of the latest US close).
+    raw_upto = raw[raw.index <= last]
+    def latest_change(sym):
+        if sym in missing or sym not in raw_upto:
+            return None
+        ser = raw_upto[sym].dropna()
+        if len(ser) < 2:
+            return None
+        return float(ser.iloc[-1] / ser.iloc[-2] - 1)
+    day_r = {sym: latest_change(sym) for sym in symbols}
+
+    def day_pct(syms):
+        """Value-weighted daily change for a group of positions, in percent."""
+        gain = prev_val = 0.0
+        for sym in syms:
+            value = float(pos_values.loc[last, sym])
+            r = day_r.get(sym) or 0.0
+            g = value * (1 - 1 / (1 + r))
+            gain += g
+            prev_val += value - g
+        return round(gain / prev_val * 100, 2) if prev_val else None
     theses = []
     for t in thesis_weights.index:
         tv = thesis_values.loc[last, t]
@@ -167,7 +192,7 @@ def main():
             "current_weight": round(float(tv / portfolio.loc[last] * 100), 2),
             "return_pct": pct(tv / tw),
             "contribution_pp": round(float((tv - tw) * 100), 2),
-            "day_return_pct": pct(tv / thesis_values.loc[prev, t]) if prev is not None else None,
+            "day_return_pct": day_pct([x for x in symbols if thesis_of[x] == t]),
         })
 
     positions = []
@@ -181,7 +206,7 @@ def main():
             "current_weight": round(float(pos_values.loc[last, s] / portfolio.loc[last] * 100), 2),
             "return_pct": pct(rel.loc[last, s]),
             "contribution_pp": round(float((pos_values.loc[last, s] - weights[s]) * 100), 2),
-            "day_return_pct": pct(rel.loc[last, s] / rel.loc[prev, s]) if prev is not None else None,
+            "day_return_pct": round(day_r[s] * 100, 2) if day_r.get(s) is not None else None,
             "data_missing": s in missing,
         })
 
@@ -189,6 +214,7 @@ def main():
         "inception": INCEPTION,
         "as_of": last.strftime("%Y-%m-%d"),
         "portfolio_return_pct": pct(portfolio.loc[last]),
+        "portfolio_day_return_pct": day_pct(symbols),
         "benchmarks": {b: pct(bench_rel.loc[last, b]) for b in BENCHMARKS},
         "theses": theses,
         "positions": positions,
