@@ -100,6 +100,10 @@ a { color: var(--link); }
 }
 @media (max-width: 480px) { .theme-btn { right: 12px; width: 40px; height: 40px; } }
 .brand { display: inline-flex; align-items: center; gap: 0.5em; font-size: 24px; color: var(--brand-text); text-decoration: none; min-height: 44px; }
+.brand-wrap { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.brand-lockup { display: inline-flex; align-items: center; }
+.tagline { margin: 0; font-size: 13px; color: var(--t-muted); letter-spacing: 0.02em; text-align: center; }
+@media (max-width: 480px) { .tagline { font-size: 11.5px; } }
 @media (max-width: 480px) { .brand { font-size: 17px; } }
 .brand-mark { height: 1.45em; width: calc(1.45em * 50.7 / 16); flex: none; }
 .bm-d { fill: var(--brand-text); }
@@ -154,6 +158,12 @@ a { color: var(--link); }
 .block { margin-top: 48px; }
 .panel-h { margin: 0 0 16px; font-size: 34px; font-weight: 700; font-stretch: var(--cond); line-height: 1.15; }
 .panel-note { margin: 10px 0 0; font-size: 14px; color: var(--t-muted); }
+.panel-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 10px 24px; margin-bottom: 16px; }
+.panel-row .panel-h { margin: 0; }
+.heat-legend { display: grid; grid-template-columns: 200px; gap: 4px; font-size: 12.5px; color: var(--t-muted); }
+.heat-legend-label { text-align: center; }
+.heat-legend-bar { height: 8px; border-radius: 4px; background: linear-gradient(to right, #B9333F, #454B55, #17845B); }
+.heat-legend-scale { display: flex; justify-content: space-between; font-size: 11.5px; }
 
 /* Heat map */
 .treemap { position: relative; width: 100%; height: 540px; }
@@ -242,6 +252,18 @@ a { color: var(--link); }
 .writeup .milestones { list-style: none; padding: 0; margin: 8px 0 0; }
 .writeup .milestones li { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--t-rule); font-size: 15px; }
 .writeup .status { flex: none; font-size: 13px; font-weight: 600; color: var(--t-muted); }
+.sources { margin-top: 16px; border-top: 1px solid var(--t-rule); }
+.sources > summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+  min-height: 44px; font-size: 14px; font-weight: 600; color: var(--t-muted);
+}
+.sources > summary::-webkit-details-marker { display: none; }
+.sources > summary:hover { color: var(--t-text); }
+.sources > summary .chev { width: 8px; height: 8px; }
+.sources[open] > summary .chev { transform: rotate(-135deg) translate(-2px, -2px); }
+.sources ol { margin: 0 0 6px; padding-left: 22px; font-size: 13.5px; line-height: 1.55; color: var(--t-muted); }
+.sources li { margin: 0 0 6px; overflow-wrap: anywhere; }
+.sources a { color: var(--link); }
 @media (max-width: 480px) { .book-head, .row-sum { grid-template-columns: minmax(0, 1fr) 72px 96px 14px; gap: 8px; } .b-val { font-size: 13.5px; } .b-w { font-size: 11.5px; } .chip { min-width: 92px; padding: 5px 6px; } .chip-usd { font-size: 13.5px; } .b-name { font-size: 17px; } .row-sum { padding: 12px 12px; } .row-body { padding: 4px 12px 16px; } .book-head { padding: 0 12px 0 16px; } }
 
 /* Reading sections */
