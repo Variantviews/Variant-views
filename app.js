@@ -93,7 +93,8 @@ function buildTheses(holdings, latest, perf) {
 
 // ---- Quote header ---------------------------------------------------------------
 function renderQuote(perf, latest) {
-  const priceEl = $("#q-price"), dayEl = $("#q-day"), changeEl = $("#q-change");
+  const priceEl = $("#q-price"), dayEl = $("#q-day"), dateEl = $("#q-date"), changeEl = $("#q-change");
+  dateEl.textContent = "";
   if (!perf || !perf.length || !latest) {
     priceEl.textContent = usd(START_VALUE);
     dayEl.textContent = "";
@@ -110,11 +111,12 @@ function renderQuote(perf, latest) {
       : (lastIdx / perf[perf.length - 2].Portfolio - 1) * 100;
     dayEl.className = `quote-day num ${dir(day, 2)}`;
     dayEl.textContent = pct(day, 2);
+    dateEl.textContent = new Date(`${latest.as_of}T12:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", timeZone: "UTC" });
   } else {
     dayEl.textContent = "";
   }
   changeEl.className = `quote-change num ${dir(changePct, 2)}`;
-  changeEl.innerHTML = `${sign(round(change, 0))}${usd(change)} (${pct(changePct, 2)}) <span class="asof">since inception, updated ${esc(longDate(latest.as_of))}</span>`;
+  changeEl.innerHTML = `${sign(round(change, 0))}${usd(change)} (${pct(changePct, 2)}) <span class="asof">since inception</span>`;
 }
 
 // ---- Chart --------------------------------------------------------------------
