@@ -20,6 +20,11 @@ BENCHMARKS = ["SPY", "QQQ"]
 
 # Old symbol -> new symbol after a rename (e.g. SPAC merger)
 RENAMES = {"CCXI": "AGLT"}
+
+# Stock splits Yahoo may not have applied yet: symbol -> (approximate date, ratio).
+# If the price drops by the split ratio within a week of the date, the earlier
+# prices are divided by the ratio. If Yahoo has already adjusted, nothing changes.
+SPLITS = {"6861.T": ("2026-11-20", 5)}
 # ---------------------------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -97,6 +102,23 @@ def main():
             if not new_s.empty:
                 first = new_s.index[0]
                 prices[old] = prices[old].where(prices.index < first, prices[new])
+
+    # Correct for splits Yahoo hasn't applied yet
+    for sym, (around, ratio) in SPLITS.items():
+        if sym not in prices:
+            continue
+        ser = prices[sym].dropna()
+        centre = pd.Timestamp(around)
+        window = ser[(ser.index >= centre - timedelta(days=7)) & (ser.index <= centre + timedelta(days=7))]
+        for day in window.index:
+            pos = ser.index.get_loc(day)
+            if pos == 0:
+                continue
+            jump = ser.iloc[pos - 1] / ser.iloc[pos]
+            if abs(jump / ratio - 1) < 0.25:            # price fell by roughly the split ratio
+                prices.loc[prices.index < day, sym] = prices.loc[prices.index < day, sym] / ratio
+                print(f"Adjusted {sym} for a {ratio}-for-1 split on {day.date()}")
+                break
 
     # Convert non-USD prices to USD
     for ccy in {currency(s) for s in symbols} - {"USD"}:
