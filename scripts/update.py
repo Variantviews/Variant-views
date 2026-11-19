@@ -95,6 +95,20 @@ def main():
     start = (inception - timedelta(days=10)).strftime("%Y-%m-%d")
     prices = download(symbols + renamed + benches, start)
 
+    # Yahoo sometimes returns too little for a symbol in a big batch download.
+    # Retry those one at a time, and log how many prices each symbol has.
+    counts = prices.notna().sum()
+    for sym in [x for x in symbols + benches if counts.get(x, 0) < 3]:
+        try:
+            single = download([sym], start)
+            if single.iloc[:, 0].notna().sum() > counts.get(sym, 0):
+                prices = prices.reindex(prices.index.union(single.index))
+                prices[sym] = single.iloc[:, 0].reindex(prices.index)
+                print(f"Re-downloaded {sym} separately")
+        except Exception as e:
+            print(f"Retry failed for {sym}: {e}")
+    print("Prices received per symbol:", prices.notna().sum().to_dict())
+
     # Join old and new price histories after a rename
     for old, new in RENAMES.items():
         if old in prices and new in prices:
@@ -152,7 +166,9 @@ def main():
     if hist.empty:
         hist = before.iloc[[-1]]
 
-    missing = [s for s in symbols if pd.isna(base.get(s))]
+    # Treat a symbol as missing if it has no start price or no price since the start
+    since = raw[raw.index >= inception] if len(raw) else raw
+    missing = [s for s in symbols if pd.isna(base.get(s)) or since[s].notna().sum() == 0]
     for s in missing:
         print(f"WARNING: no price data for {s}; held flat at cost.")
 
