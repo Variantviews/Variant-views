@@ -107,6 +107,9 @@ def main():
                 print(f"Re-downloaded {sym} separately")
         except Exception as e:
             print(f"Retry failed for {sym}: {e}")
+    for sym in symbols + benches:
+        if sym not in prices:
+            prices[sym] = float("nan")
     print("Prices received per symbol:", prices.notna().sum().to_dict())
 
     # Join old and new price histories after a rename
@@ -168,7 +171,8 @@ def main():
 
     # Treat a symbol as missing if it has no start price or no price since the start
     since = raw[raw.index >= inception] if len(raw) else raw
-    missing = [s for s in symbols if pd.isna(base.get(s)) or since[s].notna().sum() == 0]
+    missing = [s for s in symbols
+               if s not in prices or pd.isna(base.get(s)) or s not in since or since[s].notna().sum() == 0]
     for s in missing:
         print(f"WARNING: no price data for {s}; held flat at cost.")
 
