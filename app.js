@@ -260,12 +260,25 @@ function mix(a, b, t) {
   const pa = a.match(/\w\w/g).map((s) => parseInt(s, 16)), pb = b.match(/\w\w/g).map((s) => parseInt(s, 16));
   return "#" + pa.map((c, i) => Math.round(c + (pb[i] - c) * t).toString(16).padStart(2, "0")).join("");
 }
-// Today's return: light grey at 0%, shading to dark green at +7% and dark red at −7%
-const HEAT = { ZERO: "#D3D7DD", LIGHT_UP: "#CBEBD6", DARK_UP: "#0B6B43", LIGHT_DOWN: "#F6D2D5", DARK_DOWN: "#9E1F2D", MAX: 7 };
+// Today's return: light grey at 0%. Colour deepens quickly up to about 3%, which is already
+// fairly dark, then keeps darkening more gradually towards ±7% (an ease-out curve).
+const HEAT_ZERO = "#D3D7DD";
+const HEAT_MAX = 7;
+const HEAT_UP = [[0, "#D5E3DA"], [0.35, "#A2C6AF"], [0.7, "#2F7550"], [1, "#043A22"]];
+const HEAT_DOWN = [[0, "#E9D7D9"], [0.35, "#D3A6AB"], [0.7, "#923C47"], [1, "#4F0A13"]];
+const heatCurve = (x) => 1 - Math.pow(1 - Math.min(1, x / HEAT_MAX), 2.2);
+function scale(stops, t) {
+  for (let i = 1; i < stops.length; i++) {
+    if (t <= stops[i][0]) {
+      const [t0, c0] = stops[i - 1], [t1, c1] = stops[i];
+      return mix(c0, c1, (t - t0) / (t1 - t0));
+    }
+  }
+  return stops[stops.length - 1][1];
+}
 function heat(dayReturn) {
-  if (!isNum(dayReturn) || Math.abs(dayReturn) < 0.05) return HEAT.ZERO;
-  const t = Math.min(1, Math.abs(dayReturn) / HEAT.MAX);
-  return dayReturn > 0 ? mix(HEAT.LIGHT_UP, HEAT.DARK_UP, t) : mix(HEAT.LIGHT_DOWN, HEAT.DARK_DOWN, t);
+  if (!isNum(dayReturn) || Math.abs(dayReturn) < 0.05) return HEAT_ZERO;
+  return scale(dayReturn > 0 ? HEAT_UP : HEAT_DOWN, heatCurve(Math.abs(dayReturn)));
 }
 function textOn(hex) {
   const [r, g, b] = hex.match(/\w\w/g).map((x) => parseInt(x, 16) / 255)
