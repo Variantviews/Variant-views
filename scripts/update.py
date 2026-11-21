@@ -46,8 +46,9 @@ def currency(symbol):
 
 
 def download(symbols, start):
-    df = yf.download(symbols, start=start, auto_adjust=True,
-                     progress=False, threads=True)
+    end = (date.today() + timedelta(days=2)).strftime("%Y-%m-%d")   # make sure the latest day is included
+    df = yf.download(symbols, start=start, end=end, auto_adjust=True,
+                     progress=False, threads=False)
     close = df["Close"]
     if isinstance(close, pd.Series):
         close = close.to_frame(symbols[0])
@@ -111,6 +112,8 @@ def main():
         if sym not in prices:
             prices[sym] = float("nan")
     print("Prices received per symbol:", prices.notna().sum().to_dict())
+    print("Latest date per symbol:", {c: str(prices[c].last_valid_index().date()) if prices[c].notna().any() else None
+                                      for c in prices.columns})
 
     # Join old and new price histories after a rename
     for old, new in RENAMES.items():
@@ -153,6 +156,9 @@ def main():
     now_ny = pd.Timestamp.now(tz="America/New_York")   # handles US daylight saving
     if (now_ny.hour, now_ny.minute) < (16, 10):        # US market closes at 16:00 New York time
         us_days = us_days[us_days < pd.Timestamp(now_ny.date())]
+
+    print("Latest complete US trading day:", str(us_days.max().date()) if len(us_days) else None,
+          "| New York time now:", now_ny.strftime("%Y-%m-%d %H:%M"))
 
     # Keep the unfilled USD prices for the daily-change figures below
     raw = prices.copy()
