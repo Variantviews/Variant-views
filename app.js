@@ -143,7 +143,7 @@ function drawChart(perf) {
   const v = (n) => css.getPropertyValue(n).trim();
   const rebase = (k) => rows.map((r) => (r[k] / rows[0][k] - 1) * 100);
   const port = rebase("Portfolio");
-  const lineColor = port[port.length - 1] >= 0 ? v("--up") : v("--down");
+  const lineColor = v("--t-text");   // neutral line; green/red shading shows gains and losses
   const series = [{ name: "Portfolio", color: lineColor, width: 2.4, values: port }];
   if (show.SPY) series.push({ name: "SPY", color: v("--spy"), width: 1.5, dash: "6 4", values: rebase("SPY") });
   if (show.QQQ) series.push({ name: "QQQ", color: v("--qqq"), width: 1.5, dash: "2 3", values: rebase("QQQ") });
@@ -164,9 +164,16 @@ function drawChart(perf) {
   const dp = step < 1 ? 1 : 0;
 
   let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Portfolio return compared with benchmarks">
-    <defs><linearGradient id="fill" x1="0" x2="0" y1="0" y2="1">
-      <stop offset="0" stop-color="${lineColor}" stop-opacity="0.28"></stop>
-      <stop offset="1" stop-color="${lineColor}" stop-opacity="0"></stop></linearGradient></defs>`;
+    <defs>
+      <linearGradient id="fillUp" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="${m.t}" y2="${Y(0)}">
+        <stop offset="0" stop-color="${v("--up")}" stop-opacity="0.32"></stop>
+        <stop offset="1" stop-color="${v("--up")}" stop-opacity="0.04"></stop></linearGradient>
+      <linearGradient id="fillDown" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="${Y(0)}" y2="${m.t + ih}">
+        <stop offset="0" stop-color="${v("--down")}" stop-opacity="0.04"></stop>
+        <stop offset="1" stop-color="${v("--down")}" stop-opacity="0.32"></stop></linearGradient>
+      <clipPath id="clipUp"><rect x="0" y="0" width="${W}" height="${Y(0)}"></rect></clipPath>
+      <clipPath id="clipDown"><rect x="0" y="${Y(0)}" width="${W}" height="${H}"></rect></clipPath>
+    </defs>`;
   ticks.forEach((t) => {
     svg += `<line class="grid" x1="${m.l}" x2="${m.l + iw}" y1="${Y(t)}" y2="${Y(t)}"${Math.abs(t) < 1e-9 ? ' stroke-dasharray="3 3"' : ""}></line>`;
     svg += `<text class="ax" x="${W - 4}" y="${Y(t) + 4}" text-anchor="end">${sign(round(t, dp))}${Math.abs(t).toFixed(dp)}%</text>`;
@@ -178,7 +185,10 @@ function drawChart(perf) {
   });
   if (n > 1) {
     const line = port.map((val, i) => `${X(i).toFixed(1)},${Y(val).toFixed(1)}`).join(" ");
-    svg += `<polygon points="${X(0)},${Y(mn)} ${line} ${X(n - 1)},${Y(mn)}" fill="url(#fill)"></polygon>`;
+    // Shade between the portfolio line and 0%: green above, red below
+    const area = `${X(0)},${Y(0)} ${line} ${X(n - 1)},${Y(0)}`;
+    svg += `<polygon points="${area}" fill="url(#fillUp)" clip-path="url(#clipUp)"></polygon>`;
+    svg += `<polygon points="${area}" fill="url(#fillDown)" clip-path="url(#clipDown)"></polygon>`;
   }
   [...series].reverse().forEach((s) => {
     if (n === 1) {
@@ -188,6 +198,10 @@ function drawChart(perf) {
     const p = s.values.map((val, i) => `${X(i).toFixed(1)},${Y(val).toFixed(1)}`).join(" ");
     svg += `<polyline points="${p}" fill="none" stroke="${s.color}" stroke-width="${s.width}" ${s.dash ? `stroke-dasharray="${s.dash}"` : ""} stroke-linejoin="round"></polyline>`;
   });
+  if (n > 1) {
+    const endCol = port[n - 1] >= 0 ? v("--up") : v("--down");
+    svg += `<circle cx="${X(n - 1)}" cy="${Y(port[n - 1])}" r="4" fill="${endCol}"></circle>`;
+  }
   svg += `<line class="cursor" id="cursor" x1="0" x2="0" y1="${m.t}" y2="${m.t + ih}" visibility="hidden"></line>`;
   svg += `<rect id="hit" x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent"></rect></svg>`;
   el.innerHTML = svg + `<div class="tooltip" id="tip"></div>`;
@@ -246,11 +260,17 @@ function mix(a, b, t) {
   const pa = a.match(/\w\w/g).map((s) => parseInt(s, 16)), pb = b.match(/\w\w/g).map((s) => parseInt(s, 16));
   return "#" + pa.map((c, i) => Math.round(c + (pb[i] - c) * t).toString(16).padStart(2, "0")).join("");
 }
+// Today's return: light grey at 0%, shading to dark green at +7% and dark red at −7%
+const HEAT = { ZERO: "#D3D7DD", LIGHT_UP: "#CBEBD6", DARK_UP: "#0B6B43", LIGHT_DOWN: "#F6D2D5", DARK_DOWN: "#9E1F2D", MAX: 7 };
 function heat(dayReturn) {
-  const FLAT = "#454B55", UP = "#17845B", DOWN = "#B9333F";
-  if (!isNum(dayReturn)) return FLAT;
-  const t = Math.max(-1, Math.min(1, dayReturn / 3)); // full colour at ±3% in a day
-  return t >= 0 ? mix(FLAT, UP, t) : mix(FLAT, DOWN, -t);
+  if (!isNum(dayReturn) || Math.abs(dayReturn) < 0.05) return HEAT.ZERO;
+  const t = Math.min(1, Math.abs(dayReturn) / HEAT.MAX);
+  return dayReturn > 0 ? mix(HEAT.LIGHT_UP, HEAT.DARK_UP, t) : mix(HEAT.LIGHT_DOWN, HEAT.DARK_DOWN, t);
+}
+function textOn(hex) {
+  const [r, g, b] = hex.match(/\w\w/g).map((x) => parseInt(x, 16) / 255)
+    .map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.3 ? "#16202C" : "#FFFFFF";
 }
 
 function renderHeat(theses) {
@@ -267,7 +287,7 @@ function renderHeat(theses) {
     const label = `${r.name}, ${isNum(r.day) ? `${pct(r.day)} today` : "no daily change yet"}`;
     return `<a class="tile${small ? " small" : ""}${tiny ? " tiny" : ""}" href="#row-${r.id}" data-row="row-${r.id}" data-id="${r.id}" aria-label="${esc(label)}"
       style="left:${(r.x / W) * 100}%;top:${(r.y / H) * 100}%;width:${(r.w / W) * 100}%;height:${(r.h / H) * 100}%">
-      <span class="tile-in" style="background:${heat(r.day)}">
+      <span class="tile-in" style="background:${heat(r.day)};color:${textOn(heat(r.day))}">
         <span class="tile-name" style="font-size:${nameSize.toFixed(1)}px">${esc(r.name)}</span>
         <span class="tile-day num" style="font-size:${daySize.toFixed(1)}px">${pct(r.day)}</span>
       </span></a>`;
