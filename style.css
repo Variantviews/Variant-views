@@ -143,7 +143,7 @@ a { color: var(--link); }
 .legend-btn[aria-pressed="false"] { opacity: 0.45; text-decoration: line-through; }
 @media (max-width: 640px) { .legend { position: static; margin-bottom: 6px; } .legend-btn { min-height: 44px; } }
 .key { display: inline-block; width: 20px; height: 0; border-top: 2px dashed var(--spy); }
-.key-port { border-top: 3px solid var(--up); }
+.key-port { border-top: 3px solid var(--t-text); }
 .key-qqq { border-top: 2px dotted var(--qqq); }
 
 .chart { position: relative; height: 340px; padding-top: 0; }
@@ -164,7 +164,7 @@ a { color: var(--link); }
 .panel-row .panel-h { margin: 0; }
 .heat-legend { display: grid; grid-template-columns: 200px; gap: 4px; font-size: 12.5px; color: var(--t-muted); }
 .heat-legend-label { text-align: center; }
-.heat-legend-bar { height: 8px; border-radius: 4px; background: linear-gradient(to right, #B9333F, #454B55, #17845B); }
+.heat-legend-bar { height: 8px; border-radius: 4px; background: linear-gradient(to right, #9E1F2D, #F6D2D5 49%, #D3D7DD 50%, #CBEBD6 51%, #0B6B43); }
 .heat-legend-scale { display: flex; justify-content: space-between; font-size: 11.5px; }
 
 /* Heat map */
