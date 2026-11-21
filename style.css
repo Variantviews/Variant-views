@@ -164,7 +164,7 @@ a { color: var(--link); }
 .panel-row .panel-h { margin: 0; }
 .heat-legend { display: grid; grid-template-columns: 200px; gap: 4px; font-size: 12.5px; color: var(--t-muted); }
 .heat-legend-label { text-align: center; }
-.heat-legend-bar { height: 8px; border-radius: 4px; background: linear-gradient(to right, #9E1F2D, #F6D2D5 49%, #D3D7DD 50%, #CBEBD6 51%, #0B6B43); }
+.heat-legend-bar { height: 8px; border-radius: 4px; background: linear-gradient(to right, #4F0A13 0.0%, #520C15 7.1%, #5D151E 14.3%, #72242E 21.4%, #903B46 28.6%, #B3727A 35.7%, #D7AFB3 42.9%, #E3CACD 47.9%, #D3D7DD 50%, #C8DBCF 52.1%, #ABCBB7 57.1%, #699E80 64.3%, #2E734F 71.4%, #1A583A 78.6%, #0D462C 85.7%, #063D24 92.9%, #043A22 100.0%); }
 .heat-legend-scale { display: flex; justify-content: space-between; font-size: 11.5px; }
 
 /* Heat map */
