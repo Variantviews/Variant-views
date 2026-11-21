@@ -109,8 +109,9 @@ function renderQuote(perf, latest) {
   if (isNum(latest.portfolio_day_return_pct) || perf.length > 1) {
     const day = isNum(latest.portfolio_day_return_pct) ? latest.portfolio_day_return_pct
       : (lastIdx / perf[perf.length - 2].Portfolio - 1) * 100;
+    const dayGain = value - value / (1 + day / 100);
     dayEl.className = `quote-day num ${dir(day, 2)}`;
-    dayEl.textContent = pct(day, 2);
+    dayEl.textContent = `${sign(round(dayGain, 0))}${usd(dayGain)} (${pct(day, 2)})`;
     dateEl.textContent = new Date(`${latest.as_of}T12:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", timeZone: "UTC" });
   } else {
     dayEl.textContent = "";
