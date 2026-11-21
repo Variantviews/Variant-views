@@ -416,10 +416,27 @@ async function init() {
     if (!tile) return;
     e.preventDefault();
     $("#heat-tip").style.display = "none";
-    history.replaceState(null, "", `#${tile.dataset.row}`);
     openRow(tile.dataset.row, !matchMedia("(prefers-reduced-motion: reduce)").matches);
   });
   if (location.hash.startsWith("#row-")) openRow(location.hash.slice(1), false);
+
+  // Keep the address bar at plain variantviews.com: links inside the page scroll without adding #… to the URL
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a || e.defaultPrevented) return;
+    e.preventDefault();
+    const id = a.getAttribute("href").slice(1);
+    const target = id === "main" && a.classList.contains("brand") ? null : document.getElementById(id);
+    const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (target) {
+      target.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+      if (target.id === "main") target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
+    } else {
+      window.scrollTo({ top: 0, behavior: smooth ? "smooth" : "auto" });
+    }
+  });
+  if (location.hash) history.replaceState(null, "", location.pathname + location.search);
 
   // Light/dark toggle: remembers the visitor's choice; otherwise follows their device setting
   const themeBtn = $("#theme-btn");
