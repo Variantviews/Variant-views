@@ -1,8 +1,8 @@
 {
   "inception": "2026-11-02",
   "as_of": "2026-11-24",
-  "portfolio_return_pct": -4.22,
-  "portfolio_day_return_pct": -0.14,
+  "portfolio_return_pct": -4.21,
+  "portfolio_day_return_pct": -0.04,
   "benchmarks": {
     "SPY": -4.43,
     "QQQ": -6.31
@@ -19,10 +19,10 @@
     {
       "thesis": "GLP-1",
       "target_weight": 15.0,
-      "current_weight": 15.28,
-      "return_pct": -2.42,
-      "contribution_pp": -0.36,
-      "day_return_pct": 2.55
+      "current_weight": 15.26,
+      "return_pct": -2.54,
+      "contribution_pp": -0.38,
+      "day_return_pct": 2.41
     },
     {
       "thesis": "META",
@@ -43,18 +43,18 @@
     {
       "thesis": "Reinsurance",
       "target_weight": 6.0,
-      "current_weight": 6.21,
-      "return_pct": -0.88,
-      "contribution_pp": -0.05,
-      "day_return_pct": 1.07
+      "current_weight": 6.18,
+      "return_pct": -1.36,
+      "contribution_pp": -0.08,
+      "day_return_pct": 0.73
     },
     {
       "thesis": "Robotics",
       "target_weight": 12.0,
-      "current_weight": 10.45,
-      "return_pct": -16.55,
-      "contribution_pp": -1.99,
-      "day_return_pct": 0.49
+      "current_weight": 10.51,
+      "return_pct": -16.11,
+      "contribution_pp": -1.93,
+      "day_return_pct": 1.76
     },
     {
       "thesis": "TSMC",
@@ -67,10 +67,10 @@
     {
       "thesis": "Water",
       "target_weight": 10.0,
-      "current_weight": 10.27,
-      "return_pct": -1.64,
+      "current_weight": 10.28,
+      "return_pct": -1.55,
       "contribution_pp": -0.16,
-      "day_return_pct": 0.13
+      "day_return_pct": 0.22
     }
   ],
   "positions": [
@@ -189,10 +189,10 @@
       "name": "Bachem",
       "thesis": "GLP-1",
       "target_weight": 3.0,
-      "current_weight": 2.84,
-      "return_pct": -9.31,
-      "contribution_pp": -0.28,
-      "day_return_pct": -1.09,
+      "current_weight": 2.82,
+      "return_pct": -9.95,
+      "contribution_pp": -0.3,
+      "day_return_pct": -1.79,
       "data_missing": false
     },
     {
@@ -222,10 +222,10 @@
       "name": "Xylem",
       "thesis": "Water",
       "target_weight": 2.0,
-      "current_weight": 2.04,
-      "return_pct": -2.14,
-      "contribution_pp": -0.04,
-      "day_return_pct": -1.62,
+      "current_weight": 2.05,
+      "return_pct": -1.7,
+      "contribution_pp": -0.03,
+      "day_return_pct": -1.18,
       "data_missing": false
     },
     {
@@ -277,10 +277,10 @@
       "name": "Keyence",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.81,
-      "return_pct": -2.47,
+      "current_weight": 0.82,
+      "return_pct": -2.35,
       "contribution_pp": -0.02,
-      "day_return_pct": 5.5,
+      "day_return_pct": 5.63,
       "data_missing": false
     },
     {
@@ -289,9 +289,9 @@
       "thesis": "Robotics",
       "target_weight": 0.8,
       "current_weight": 0.69,
-      "return_pct": -16.95,
-      "contribution_pp": -0.14,
-      "day_return_pct": 6.22,
+      "return_pct": -16.85,
+      "contribution_pp": -0.13,
+      "day_return_pct": 6.35,
       "data_missing": false
     },
     {
@@ -300,9 +300,9 @@
       "thesis": "Robotics",
       "target_weight": 0.8,
       "current_weight": 0.65,
-      "return_pct": -21.73,
+      "return_pct": -21.64,
       "contribution_pp": -0.17,
-      "day_return_pct": 6.64,
+      "day_return_pct": 6.77,
       "data_missing": false
     },
     {
@@ -321,10 +321,10 @@
       "name": "Renishaw",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.71,
-      "return_pct": -14.96,
-      "contribution_pp": -0.12,
-      "day_return_pct": -4.27,
+      "current_weight": 0.74,
+      "return_pct": -11.17,
+      "contribution_pp": -0.09,
+      "day_return_pct": 5.99,
       "data_missing": false
     },
     {
@@ -365,10 +365,10 @@
       "name": "Schaeffler",
       "thesis": "Robotics",
       "target_weight": 0.8,
-      "current_weight": 0.68,
-      "return_pct": -19.04,
-      "contribution_pp": -0.15,
-      "day_return_pct": -3.06,
+      "current_weight": 0.7,
+      "return_pct": -16.49,
+      "contribution_pp": -0.13,
+      "day_return_pct": 4.99,
       "data_missing": false
     },
     {
@@ -377,9 +377,9 @@
       "thesis": "Robotics",
       "target_weight": 0.8,
       "current_weight": 0.64,
-      "return_pct": -23.9,
+      "return_pct": -23.81,
       "contribution_pp": -0.19,
-      "day_return_pct": 6.33,
+      "day_return_pct": 6.46,
       "data_missing": false
     },
     {
@@ -399,9 +399,9 @@
       "thesis": "Robotics",
       "target_weight": 0.8,
       "current_weight": 0.95,
-      "return_pct": 13.79,
+      "return_pct": 13.74,
       "contribution_pp": 0.11,
-      "day_return_pct": 19.86,
+      "day_return_pct": 19.81,
       "data_missing": false
     },
     {
@@ -410,9 +410,9 @@
       "thesis": "Robotics",
       "target_weight": 0.8,
       "current_weight": 0.57,
-      "return_pct": -31.74,
+      "return_pct": -31.75,
       "contribution_pp": -0.25,
-      "day_return_pct": -4.46,
+      "day_return_pct": -4.47,
       "data_missing": false
     },
     {
@@ -421,9 +421,9 @@
       "thesis": "Robotics",
       "target_weight": 0.8,
       "current_weight": 0.82,
-      "return_pct": -2.37,
+      "return_pct": -2.38,
       "contribution_pp": -0.02,
-      "day_return_pct": 4.38,
+      "day_return_pct": 4.37,
       "data_missing": false
     },
     {
@@ -442,10 +442,10 @@
       "name": "Munich Re",
       "thesis": "Reinsurance",
       "target_weight": 2.0,
-      "current_weight": 2.12,
-      "return_pct": 1.59,
-      "contribution_pp": 0.03,
-      "day_return_pct": 0.75,
+      "current_weight": 2.11,
+      "return_pct": 0.83,
+      "contribution_pp": 0.02,
+      "day_return_pct": 0.43,
       "data_missing": false
     },
     {
@@ -453,10 +453,10 @@
       "name": "Swiss Re",
       "thesis": "Reinsurance",
       "target_weight": 2.0,
-      "current_weight": 2.05,
-      "return_pct": -1.96,
-      "contribution_pp": -0.04,
-      "day_return_pct": 1.85,
+      "current_weight": 2.03,
+      "return_pct": -2.65,
+      "contribution_pp": -0.05,
+      "day_return_pct": 1.13,
       "data_missing": false
     },
     {
