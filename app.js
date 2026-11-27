@@ -68,8 +68,12 @@ function buildTheses(holdings, latest, perf) {
     g.holdings.forEach((h) => {
       const p = lp[h.symbol] || null;
       h.live = p;
-      h.cost = (h.weight / 100) * START_VALUE;
-      h.value = p && isNum(p.return_pct) ? h.cost * (1 + p.return_pct / 100) : null;
+      // Money put into the position, and its value now (from the tracker, which handles trades)
+      h.cost = p && isNum(p.cost_pct) ? (p.cost_pct / 100) * START_VALUE : (h.weight / 100) * START_VALUE;
+      h.value = p && isNum(p.value_pct) ? (p.value_pct / 100) * START_VALUE
+        : p && isNum(p.return_pct) ? h.cost * (1 + p.return_pct / 100) : null;
+      h.sold = p && p.status === "sold" ? p.sold : null;
+      h.bought = p && p.bought ? p.bought : null;
       h.current = p ? p.current_weight : null;
       h.day = p && isNum(p.day_return_pct) ? p.day_return_pct : null;
       h.dayGain = isNum(h.day) && isNum(h.value) ? h.value - h.value / (1 + h.day / 100) : null;
@@ -81,8 +85,10 @@ function buildTheses(holdings, latest, perf) {
     const cost = (g.weight / 100) * START_VALUE;
     const value = isNum(ret) ? cost * (1 + ret / 100) : null;
     const dayGain = isNum(day) && isNum(value) ? value - value / (1 + day / 100) : null;
+    const held = g.holdings.filter((h) => !h.sold && !(h.weight === 0 && !h.bought));
+    const sold = g.holdings.filter((h) => h.sold);
     return {
-      ...g, id: slug(g.name), ret, day, cost, value, dayGain,
+      ...g, held, sold, id: slug(g.name), ret, day, cost, value, dayGain,
       current: d ? d.current_weight : null,
     };
   });
@@ -317,7 +323,7 @@ function setupHeatTip(theses) {
     if (!tile) { tip.style.display = "none"; return; }
     const t = byId[tile.dataset.id];
     const weightNow = isNum(t.current) ? wpct(t.current, 1) : wpct(t.weight, 1);
-    const names = t.holdings.length > 1 ? `<br><b>Holdings:</b> ${t.holdings.map((h) => esc(shortName(h.name))).join(", ")}` : "";
+    const names = t.held.length > 1 ? `<br><b>Holdings:</b> ${t.held.map((h) => esc(shortName(h.name))).join(", ")}` : "";
     const val = usd(isNum(t.value) ? t.value : t.cost);
     tip.innerHTML = `<b>Value:</b> <span class="num">${val}</span><br><b>Weight:</b> <span class="num">${weightNow}</span><br><b>Total return:</b> <span class="num">${pct(t.ret)}</span>${names}`;
     tip.style.display = "block";
@@ -357,17 +363,39 @@ function holdingRow(h) {
   const gain = isNum(h.value) ? h.value - h.cost : null;
   return `<tr>
     <td><span class="co" title="${esc(h.symbol)}" tabindex="0">${esc(shortName(h.name))}</span><span class="co-tick">${esc(h.symbol)}</span></td>
-    <td class="r num"><span class="v">${usd(h.cost)}</span><small>${wpct(h.weight, 1)}</small></td>
+    <td class="r num"><span class="v">${usd(h.cost)}</span><small>${h.bought ? `Bought ${shortDate(h.bought)}` : wpct(h.weight, 1)}</small></td>
     <td class="r num"><span class="v ${dir(h.day, 2)}">${usdSigned(h.dayGain)}</span><small class="${dir(h.day, 2)}">${pct(h.day, 2)}</small></td>
     <td class="r num"><span class="v ${dir(ret)}">${usdSigned(gain)}</span><small class="${dir(ret)}">${pct(ret)}</small></td>
     <td class="r num"><span class="v">${isNum(h.value) ? usd(h.value) : "–"}</span><small>${isNum(h.current) ? wpct(h.current, 1) : "–"}</small></td>
   </tr>`;
 }
 
+// "Changes in holdings": dated notes from content/theses.json, newest first
+function changesSection(t, content) {
+  const c = (content && content[t.name]) || {};
+  const list = (c.changes || []).filter((x) => x && x.date && x.text)
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
+  const body = list.length
+    ? list.map((x) => `<p><b>${esc(longDate(x.date))}:</b> ${esc(x.text)}</p>`).join("")
+    : `<p class="placeholder">No changes made so far.</p>`;
+  return `<details class="writeup"><summary>Changes in holdings<span class="chev" aria-hidden="true"></span></summary>
+    <div class="writeup-text">${body}</div></details>`;
+}
+
+// Positions that were sold stay on the record, listed under the table with their final return
+function soldNote(t) {
+  if (!t.sold.length) return "";
+  const byDate = {};
+  t.sold.forEach((h) => (byDate[h.sold] = byDate[h.sold] || []).push(h));
+  return Object.entries(byDate).map(([d, list]) => `<p class="sold-note">Sold on ${esc(longDate(d))}, with proceeds reinvested in this thesis: ${
+    list.map((h) => `${esc(shortName(h.name))} <span class="num ${dir(h.live?.return_pct)}">${pct(h.live?.return_pct)}</span>`).join(", ")
+  }. The total above includes their gains and losses.</p>`).join("");
+}
+
 function renderBook(theses, content) {
   $("#book").innerHTML = theses.map((t) => {
-    const multi = t.holdings.length > 1;
-    const sub = multi ? `<span class="b-sub">${t.holdings.length} holdings</span>` : "";
+    const multi = t.held.length > 1;
+    const sub = multi ? `<span class="b-sub">${t.held.length} holdings</span>` : "";
     const gain = isNum(t.value) ? t.value - t.cost : null;
     const weightNow = isNum(t.current) ? wpct(t.current, 1) : wpct(t.weight, 1);
     const total = multi ? `<tr class="total">
@@ -379,8 +407,8 @@ function renderBook(theses, content) {
       </tr>` : "";
     const table = `<div class="table-wrap"><table>
         <thead><tr><th>Company</th><th class="r">Purchase value<small>Weight</small></th><th class="r">Day gain<small>Day return</small></th><th class="r">Total gain<small>Return</small></th><th class="r">Current value<small>Current weight</small></th></tr></thead>
-        <tbody>${t.holdings.map(holdingRow).join("")}${total}</tbody>
-      </table></div>`;
+        <tbody>${t.held.map(holdingRow).join("")}${total}</tbody>
+      </table></div>${soldNote(t)}`;
     return `<details id="row-${t.id}" style="--tc:${t.color}">
       <summary class="row-sum">
         <span><span class="b-name">${esc(t.name)}</span>${sub}</span>
@@ -392,6 +420,7 @@ function renderBook(theses, content) {
         <p class="row-figs num"><span>Starting weight:<b>${weight0(t.weight)}</b></span></p>
         ${table}
         ${writeup(t, content)}
+        ${changesSection(t, content)}
       </div>
     </details>`;
   }).join("");
