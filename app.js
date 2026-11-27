@@ -363,7 +363,7 @@ function holdingRow(h) {
   const gain = isNum(h.value) ? h.value - h.cost : null;
   return `<tr>
     <td><span class="co" title="${esc(h.symbol)}" tabindex="0">${esc(shortName(h.name))}</span><span class="co-tick">${esc(h.symbol)}</span></td>
-    <td class="r num"><span class="v">${usd(h.cost)}</span><small>${h.bought ? `Bought ${shortDate(h.bought)}` : wpct(h.weight, 1)}</small></td>
+    <td class="r num"><span class="v">${usd(h.cost)}</span>${h.bought ? `<small>Bought ${shortDate(h.bought)}</small>` : ""}</td>
     <td class="r num"><span class="v ${dir(h.day, 2)}">${usdSigned(h.dayGain)}</span><small class="${dir(h.day, 2)}">${pct(h.day, 2)}</small></td>
     <td class="r num"><span class="v ${dir(ret)}">${usdSigned(gain)}</span><small class="${dir(ret)}">${pct(ret)}</small></td>
     <td class="r num"><span class="v">${isNum(h.value) ? usd(h.value) : "–"}</span><small>${isNum(h.current) ? wpct(h.current, 1) : "–"}</small></td>
@@ -396,7 +396,7 @@ function changesSection(t, content) {
         const r = h.live?.return_pct;
         return `<tr>
           <td><span class="co" title="${esc(h.symbol)}" tabindex="0">${esc(shortName(h.name))}</span><span class="co-tick">${esc(h.symbol)}</span></td>
-          <td class="r num"><span class="v">${usd(h.cost)}</span><small>${h.bought ? `Bought ${shortDate(h.bought)}` : wpct(h.weight, 1)}</small></td>
+          <td class="r num"><span class="v">${usd(h.cost)}</span>${h.bought ? `<small>Bought ${shortDate(h.bought)}</small>` : ""}</td>
           <td class="r num"><span class="v">${isNum(h.value) ? usd(h.value) : "–"}</span><small>Sold ${shortDate(d)}</small></td>
           <td class="r num"><span class="v ${dir(r)}">${usdSigned(g)}</span><small class="${dir(r)}">${pct(r)}</small></td>
         </tr>`;
@@ -406,7 +406,7 @@ function changesSection(t, content) {
           <td class="r num"><span class="v">${usd(value)}</span></td>
           <td class="r num"><span class="v ${dir(ret)}">${usdSigned(gain)}</span><small class="${dir(ret)}">${pct(ret)}</small></td></tr>` : "";
       table = `<div class="table-wrap"><table>
-          <thead><tr><th>Sold</th><th class="r">Purchase value<small>Weight</small></th><th class="r">Sale proceeds<small>Date</small></th><th class="r">Total gain<small>Return</small></th></tr></thead>
+          <thead><tr><th>Sold</th><th class="r">Purchase value</th><th class="r">Sale proceeds<small>Date</small></th><th class="r">Total gain<small>Return</small></th></tr></thead>
           <tbody>${rows}${total}</tbody></table></div>`;
     }
     const names = bought.map((h) => esc(shortName(h.name)));
@@ -436,13 +436,13 @@ function renderBook(theses, content) {
     const weightNow = isNum(t.current) ? wpct(t.current, 1) : wpct(t.weight, 1);
     const total = multi ? `<tr class="total">
         <td>Total</td>
-        <td class="r num"><span class="v">${usd(t.cost)}</span><small>${wpct(t.weight, 1)}</small></td>
+        <td class="r num"><span class="v">${usd(t.cost)}</span></td>
         <td class="r num"><span class="v ${dir(t.day, 2)}">${usdSigned(t.dayGain)}</span><small class="${dir(t.day, 2)}">${pct(t.day, 2)}</small></td>
         <td class="r num"><span class="v ${dir(t.ret)}">${usdSigned(gain)}</span><small class="${dir(t.ret)}">${pct(t.ret)}</small></td>
         <td class="r num"><span class="v">${isNum(t.value) ? usd(t.value) : "–"}</span><small>${isNum(t.current) ? wpct(t.current, 1) : "–"}</small></td>
       </tr>` : "";
     const table = `<div class="table-wrap"><table>
-        <thead><tr><th>Company</th><th class="r">Purchase value<small>Weight</small></th><th class="r">Day gain<small>Day return</small></th><th class="r">Total gain<small>Return</small></th><th class="r">Current value<small>Current weight</small></th></tr></thead>
+        <thead><tr><th>Company</th><th class="r">Purchase value</th><th class="r">Day gain<small>Day return</small></th><th class="r">Total gain<small>Return</small></th><th class="r">Current value<small>Current weight</small></th></tr></thead>
         <tbody>${t.held.map(holdingRow).join("")}${total}</tbody>
       </table></div>${soldNote(t)}`;
     return `<details id="row-${t.id}" style="--tc:${t.color}">
