@@ -418,14 +418,24 @@ function changesSection(t, content) {
       ${table}${boughtLine}
     </div>`;
   }).join("");
-  return `<details class="writeup"><summary>Changes in holdings<span class="chev" aria-hidden="true"></span></summary>
+  return `<details class="writeup" id="chg-${t.id}"><summary>Changes in holdings<span class="chev" aria-hidden="true"></span></summary>
     <div class="writeup-text changes">${body}</div></details>`;
 }
 
-// Under the holdings table: a pointer to the sold positions, since the total includes them
-function soldNote(t) {
+// One summary row for all sold positions, so the table's gains and values add up to the total
+function soldRow(t) {
   if (!t.sold.length) return "";
-  return `<p class="sold-note">The total includes positions that have since been sold. See Changes in holdings below.</p>`;
+  const cost = t.sold.reduce((a, h) => a + h.cost, 0);
+  const value = t.sold.reduce((a, h) => a + (isNum(h.value) ? h.value : 0), 0);
+  const gain = value - cost, ret = cost ? (gain / cost) * 100 : null;
+  const dates = [...new Set(t.sold.map((h) => h.sold))].sort().map(shortDate).join(", ");
+  return `<tr class="sold-row">
+    <td><a class="sold-link" href="#chg-${t.id}">Sold positions</a><span class="sold-date">${esc(dates)}</span></td>
+    <td class="r num"><span class="v">${usd(cost)}</span></td>
+    <td class="r num"><span class="v">–</span></td>
+    <td class="r num"><span class="v ${dir(ret)}">${usdSigned(gain)}</span><small class="${dir(ret)}">${pct(ret)}</small></td>
+    <td class="r num"><span class="v">–</span></td>
+  </tr>`;
 }
 
 function renderBook(theses, content) {
@@ -436,15 +446,15 @@ function renderBook(theses, content) {
     const weightNow = isNum(t.current) ? wpct(t.current, 1) : wpct(t.weight, 1);
     const total = multi ? `<tr class="total">
         <td>Total</td>
-        <td class="r num"><span class="v">${usd(t.cost)}</span></td>
+        <td class="r num"><span class="v">${usd(t.cost)}</span>${t.sold.length ? "<small>Starting capital</small>" : ""}</td>
         <td class="r num"><span class="v ${dir(t.day, 2)}">${usdSigned(t.dayGain)}</span><small class="${dir(t.day, 2)}">${pct(t.day, 2)}</small></td>
         <td class="r num"><span class="v ${dir(t.ret)}">${usdSigned(gain)}</span><small class="${dir(t.ret)}">${pct(t.ret)}</small></td>
         <td class="r num"><span class="v">${isNum(t.value) ? usd(t.value) : "–"}</span><small>${isNum(t.current) ? wpct(t.current, 1) : "–"}</small></td>
       </tr>` : "";
     const table = `<div class="table-wrap"><table>
         <thead><tr><th>Company</th><th class="r">Purchase value</th><th class="r">Day gain<small>Day return</small></th><th class="r">Total gain<small>Return</small></th><th class="r">Current value<small>Current weight</small></th></tr></thead>
-        <tbody>${t.held.map(holdingRow).join("")}${total}</tbody>
-      </table></div>${soldNote(t)}`;
+        <tbody>${t.held.map(holdingRow).join("")}${soldRow(t)}${total}</tbody>
+      </table></div>`;
     return `<details id="row-${t.id}" style="--tc:${t.color}">
       <summary class="row-sum">
         <span><span class="b-name">${esc(t.name)}</span>${sub}</span>
@@ -528,6 +538,7 @@ async function init() {
     const target = id === "main" && a.classList.contains("brand") ? null : document.getElementById(id);
     const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (target) {
+      if (target.tagName === "DETAILS") target.open = true;
       target.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
       if (target.id === "main") target.setAttribute("tabindex", "-1");
       target.focus({ preventScroll: true });
