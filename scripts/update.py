@@ -29,12 +29,13 @@ SPLITS = {"6861.T": ("2026-11-20", 5)}
 
 ROOT = Path(__file__).resolve().parent.parent
 HOLDINGS = ROOT / "portfolio" / "holdings.csv"
+TRADES = ROOT / "portfolio" / "trades.csv"   # optional: dated switches between positions
 DATA = ROOT / "data"
 
 SUFFIX_CCY = {
     ".T": "JPY", ".SW": "CHF", ".L": "GBP", ".DE": "EUR", ".PA": "EUR",
     ".AS": "EUR", ".KQ": "KRW", ".KS": "KRW", ".HK": "HKD", ".SS": "CNY",
-    ".SZ": "CNY", ".CO": "DKK",
+    ".SZ": "CNY", ".CO": "DKK", ".ST": "SEK",
 }
 
 
@@ -188,6 +189,42 @@ def main():
     rel = rel.fillna(1.0)
 
     pos_values = rel.mul(weights, axis=1)          # buy-and-hold value of each position
+
+    # Apply dated trades: sell positions at that day's close and put the proceeds
+    # into the new positions, so the history before the trade stays untouched.
+    cost = weights.copy()                          # money put into each position (share of start value)
+    trade_info = {}
+    if TRADES.exists():
+        tr = pd.read_csv(TRADES)
+        tr["action"] = tr["action"].str.strip().str.lower()
+        for d, grp in tr.groupby("date", sort=True):
+            days = hist.index[hist.index >= pd.Timestamp(d)]
+            if not len(days):
+                print(f"Trade on {d} not applied yet: no closing prices for that day")
+                continue
+            D = days[0]
+            sells = [x for x in grp.loc[grp["action"] == "sell", "symbol"] if x in pos_values]
+            buys = grp[grp["action"] == "buy"]
+            proceeds = float(pos_values.loc[D, sells].sum())
+            for x in sells:
+                trade_info[x] = {"status": "sold", "date": D.strftime("%Y-%m-%d"),
+                                 "final_value": float(pos_values.loc[D, x]),
+                                 "final_return": pct(rel.loc[D, x])}
+                pos_values.loc[pos_values.index >= D, x] = 0.0
+            share = buys["share"].astype(float) if "share" in buys else pd.Series(1.0, index=buys.index)
+            share = share / share.sum()
+            for (_, b), sh in zip(buys.iterrows(), share):
+                x = b["symbol"]
+                amount = proceeds * float(sh)
+                growth = rel[x] / rel.loc[D, x]
+                after = pos_values.index >= D
+                pos_values.loc[after, x] = amount * growth[after]
+                pos_values.loc[~after, x] = 0.0
+                cost[x] = amount
+                trade_info[x] = {"status": "held", "bought": D.strftime("%Y-%m-%d"),
+                                 "bought_rel": float(rel.loc[D, x])}
+            print(f"Applied trade on {D.date()}: sold {sells}, bought {list(buys['symbol'])}")
+
     portfolio = pos_values.sum(axis=1)
     thesis_values = pos_values.T.groupby(thesis_of).sum().T
     thesis_weights = weights.groupby(thesis_of).sum()
@@ -246,15 +283,29 @@ def main():
     positions = []
     for _, row in h.iterrows():
         s = row["symbol"]
+        info = trade_info.get(s, {})
+        sold = info.get("status") == "sold"
+        value = info["final_value"] if sold else float(pos_values.loc[last, s])
+        if sold:
+            ret = info["final_return"]
+        elif "bought" in info:
+            ret = pct(rel.loc[last, s] / info["bought_rel"])
+        else:
+            ret = pct(rel.loc[last, s])
         positions.append({
             "symbol": s,
             "name": row["name"],
             "thesis": row["thesis"],
             "target_weight": float(row["weight"]),
-            "current_weight": round(float(pos_values.loc[last, s] / portfolio.loc[last] * 100), 2),
-            "return_pct": pct(rel.loc[last, s]),
-            "contribution_pp": round(float((pos_values.loc[last, s] - weights[s]) * 100), 2),
-            "day_return_pct": round(day_r[s] * 100, 2) if day_r.get(s) is not None else None,
+            "status": "sold" if sold else "held",
+            "bought": info.get("bought"),
+            "sold": info.get("date") if sold else None,
+            "cost_pct": round(float(cost[s] * 100), 4),
+            "value_pct": round(float(value * 100), 4),
+            "current_weight": 0.0 if sold else round(float(pos_values.loc[last, s] / portfolio.loc[last] * 100), 2),
+            "return_pct": ret,
+            "contribution_pp": round(float((value - cost[s]) * 100), 2),
+            "day_return_pct": None if sold else (round(day_r[s] * 100, 2) if day_r.get(s) is not None else None),
             "data_missing": s in missing,
         })
 
