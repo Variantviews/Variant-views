@@ -240,7 +240,10 @@ a { color: var(--link); }
 .co.show-tick + .co-tick { display: block; }
 .terminal tr.total td { border-top: 2px solid var(--t-muted); border-bottom: 0; padding-top: 9px; }
 .terminal tr.total .v, .terminal tr.total td:first-child { font-weight: 700; }
-.sold-note { margin: 10px 0 0; font-size: 13px; line-height: 1.55; color: var(--t-muted); }
+.sold-row td, .sold-row .v:not(.up):not(.down) { color: var(--t-muted); }
+.sold-link { color: var(--t-muted); text-decoration: underline; text-underline-offset: 3px; }
+.sold-link:hover { color: var(--t-text); }
+.sold-date { display: block; font-size: 12px; color: var(--t-muted); }
 .changes { max-width: none; }
 .change + .change { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--t-rule); }
 .change .table-wrap { margin: 8px 0 4px; }
