@@ -17,21 +17,25 @@ CNM,Core & Main,Water,2
 MWA,Mueller Water Products,Water,2
 BMI,Badger Meter,Water,2
 TTEK,Tetra Tech,Water,2
-6861.T,Keyence,Robotics,0.8
-6383.T,Daifuku,Robotics,0.8
-6481.T,THK,Robotics,0.8
-CGNX,Cognex,Robotics,0.8
-RSW.L,Renishaw,Robotics,0.8
-OUST,Ouster,Robotics,0.8
-NOVT,Novanta,Robotics,0.8
-RRX,Regal Rexnord,Robotics,0.8
-SHA0.DE,Schaeffler,Robotics,0.8
-6268.T,Nabtesco,Robotics,0.8
-CCXI,Agility Robotics (CCXI → AGLT after merger),Robotics,0.8
-108490.KQ,Robotis,Robotics,0.8
-3952.HK,Zhejiang Laifual Drive,Robotics,0.8
-9880.HK,UBTech Robotics,Robotics,0.8
-AVAV,AeroVironment,Robotics,0.8
+6861.T,Keyence,Automation,0.8
+6383.T,Daifuku,Automation,0.8
+6481.T,THK,Automation,0.8
+CGNX,Cognex,Automation,0.8
+RSW.L,Renishaw,Automation,0.8
+OUST,Ouster,Automation,0.8
+NOVT,Novanta,Automation,0.8
+RRX,Regal Rexnord,Automation,0.8
+SHA0.DE,Schaeffler,Automation,0.8
+6268.T,Nabtesco,Automation,0.8
+CCXI,Agility Robotics (CCXI → AGLT after merger),Automation,0.8
+108490.KQ,Robotis,Automation,0.8
+3952.HK,Zhejiang Laifual Drive,Automation,0.8
+9880.HK,UBTech Robotics,Automation,0.8
+AVAV,AeroVironment,Automation,0.8
 MUV2.DE,Munich Re,Reinsurance,2
 SREN.SW,Swiss Re,Reinsurance,2
 RNR,RenaissanceRe,Reinsurance,2
+HEXA-B.ST,Hexagon,Automation,0
+6954.T,Fanuc,Automation,0
+ROK,Rockwell Automation,Automation,0
+MTD,Mettler-Toledo,Automation,0
