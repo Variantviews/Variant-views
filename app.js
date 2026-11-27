@@ -370,26 +370,62 @@ function holdingRow(h) {
   </tr>`;
 }
 
-// "Changes in holdings": dated notes from content/theses.json, newest first
+// "Changes in holdings": for each change date, the reason (from content/theses.json),
+// a table of the positions sold with their final results, and what the proceeds bought
 function changesSection(t, content) {
   const c = (content && content[t.name]) || {};
-  const list = (c.changes || []).filter((x) => x && x.date && x.text)
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
-  const body = list.length
-    ? list.map((x) => `<p><b>${esc(longDate(x.date))}:</b> ${esc(x.text)}</p>`).join("")
-    : `<p class="placeholder">No changes made so far.</p>`;
+  const notes = {};
+  (c.changes || []).filter((x) => x && x.date).forEach((x) => (notes[x.date] = x.text || ""));
+  const soldBy = {}, boughtBy = {};
+  t.sold.forEach((h) => (soldBy[h.sold] = soldBy[h.sold] || []).push(h));
+  t.held.filter((h) => h.bought).forEach((h) => (boughtBy[h.bought] = boughtBy[h.bought] || []).push(h));
+  const dates = [...new Set([...Object.keys(notes), ...Object.keys(soldBy), ...Object.keys(boughtBy)])].sort().reverse();
+  if (!dates.length) {
+    return `<details class="writeup"><summary>Changes in holdings<span class="chev" aria-hidden="true"></span></summary>
+      <div class="writeup-text"><p class="placeholder">No changes made so far.</p></div></details>`;
+  }
+  const body = dates.map((d) => {
+    const sold = soldBy[d] || [], bought = boughtBy[d] || [];
+    let table = "";
+    if (sold.length) {
+      const sum = (f) => sold.reduce((acc, h) => acc + (isNum(f(h)) ? f(h) : 0), 0);
+      const cost = sum((h) => h.cost), value = sum((h) => h.value), gain = value - cost;
+      const ret = cost ? (gain / cost) * 100 : null;
+      const rows = sold.map((h) => {
+        const g = isNum(h.value) ? h.value - h.cost : null;
+        const r = h.live?.return_pct;
+        return `<tr>
+          <td><span class="co" title="${esc(h.symbol)}" tabindex="0">${esc(shortName(h.name))}</span><span class="co-tick">${esc(h.symbol)}</span></td>
+          <td class="r num"><span class="v">${usd(h.cost)}</span><small>${h.bought ? `Bought ${shortDate(h.bought)}` : wpct(h.weight, 1)}</small></td>
+          <td class="r num"><span class="v">${isNum(h.value) ? usd(h.value) : "–"}</span><small>Sold ${shortDate(d)}</small></td>
+          <td class="r num"><span class="v ${dir(r)}">${usdSigned(g)}</span><small class="${dir(r)}">${pct(r)}</small></td>
+        </tr>`;
+      }).join("");
+      const total = sold.length > 1 ? `<tr class="total"><td>Total</td>
+          <td class="r num"><span class="v">${usd(cost)}</span></td>
+          <td class="r num"><span class="v">${usd(value)}</span></td>
+          <td class="r num"><span class="v ${dir(ret)}">${usdSigned(gain)}</span><small class="${dir(ret)}">${pct(ret)}</small></td></tr>` : "";
+      table = `<div class="table-wrap"><table>
+          <thead><tr><th>Sold</th><th class="r">Purchase value<small>Weight</small></th><th class="r">Sale proceeds<small>Date</small></th><th class="r">Total gain<small>Return</small></th></tr></thead>
+          <tbody>${rows}${total}</tbody></table></div>`;
+    }
+    const names = bought.map((h) => esc(shortName(h.name)));
+    const list = names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : names.join("");
+    const boughtLine = bought.length
+      ? `<p class="bought-line">${sold.length ? "Proceeds reinvested in" : "Added"}: ${list}${sold.length && bought.length > 1 ? ", split equally" : ""}.</p>` : "";
+    return `<div class="change">
+      <p><b>${esc(longDate(d))}:</b> ${esc(notes[d] || "")}</p>
+      ${table}${boughtLine}
+    </div>`;
+  }).join("");
   return `<details class="writeup"><summary>Changes in holdings<span class="chev" aria-hidden="true"></span></summary>
-    <div class="writeup-text">${body}</div></details>`;
+    <div class="writeup-text changes">${body}</div></details>`;
 }
 
-// Positions that were sold stay on the record, listed under the table with their final return
+// Under the holdings table: a pointer to the sold positions, since the total includes them
 function soldNote(t) {
   if (!t.sold.length) return "";
-  const byDate = {};
-  t.sold.forEach((h) => (byDate[h.sold] = byDate[h.sold] || []).push(h));
-  return Object.entries(byDate).map(([d, list]) => `<p class="sold-note">Sold on ${esc(longDate(d))}, with proceeds reinvested in this thesis: ${
-    list.map((h) => `${esc(shortName(h.name))} <span class="num ${dir(h.live?.return_pct)}">${pct(h.live?.return_pct)}</span>`).join(", ")
-  }. The total above includes their gains and losses.</p>`).join("");
+  return `<p class="sold-note">The total includes positions that have since been sold. See Changes in holdings below.</p>`;
 }
 
 function renderBook(theses, content) {
