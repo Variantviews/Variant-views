@@ -2,7 +2,7 @@
   "inception": "2026-11-02",
   "as_of": "2026-11-27",
   "portfolio_return_pct": -2.62,
-  "portfolio_day_return_pct": 1.37,
+  "portfolio_day_return_pct": 1.36,
   "benchmarks": {
     "SPY": -3.16,
     "QQQ": -4.42
@@ -20,7 +20,7 @@
       "thesis": "Automation",
       "target_weight": 12.0,
       "current_weight": 10.68,
-      "return_pct": -13.29,
+      "return_pct": -13.3,
       "contribution_pp": -1.6,
       "day_return_pct": 2.87
     },
@@ -30,7 +30,7 @@
       "current_weight": 14.71,
       "return_pct": -4.47,
       "contribution_pp": -0.67,
-      "day_return_pct": -0.62
+      "day_return_pct": -0.63
     },
     {
       "thesis": "META",
@@ -243,11 +243,11 @@
       "bought": null,
       "sold": null,
       "cost_pct": 3.0,
-      "value_pct": 2.2807,
+      "value_pct": 2.2804,
       "current_weight": 2.34,
-      "return_pct": -23.98,
+      "return_pct": -23.99,
       "contribution_pp": -0.72,
-      "day_return_pct": -4.64,
+      "day_return_pct": -4.66,
       "data_missing": false
     },
     {
@@ -373,9 +373,9 @@
       "cost_pct": 0.8,
       "value_pct": 0.7835,
       "current_weight": 0.8,
-      "return_pct": -2.06,
+      "return_pct": -2.07,
       "contribution_pp": -0.02,
-      "day_return_pct": 3.52,
+      "day_return_pct": 3.5,
       "data_missing": false
     },
     {
@@ -389,9 +389,9 @@
       "cost_pct": 0.8,
       "value_pct": 0.6533,
       "current_weight": 0.67,
-      "return_pct": -18.33,
+      "return_pct": -18.34,
       "contribution_pp": -0.15,
-      "day_return_pct": 3.91,
+      "day_return_pct": 3.9,
       "data_missing": false
     },
     {
@@ -403,11 +403,11 @@
       "bought": null,
       "sold": null,
       "cost_pct": 0.8,
-      "value_pct": 0.6145,
+      "value_pct": 0.6144,
       "current_weight": 0.63,
-      "return_pct": -23.19,
+      "return_pct": -23.2,
       "contribution_pp": -0.19,
-      "day_return_pct": 4.22,
+      "day_return_pct": 4.21,
       "data_missing": false
     },
     {
@@ -435,11 +435,11 @@
       "bought": null,
       "sold": null,
       "cost_pct": 0.8,
-      "value_pct": 0.6826,
+      "value_pct": 0.6825,
       "current_weight": 0.7,
       "return_pct": -14.68,
       "contribution_pp": -0.12,
-      "day_return_pct": 1.47,
+      "day_return_pct": 1.46,
       "data_missing": false
     },
     {
@@ -515,11 +515,11 @@
       "bought": null,
       "sold": null,
       "cost_pct": 0.8,
-      "value_pct": 0.6346,
+      "value_pct": 0.6345,
       "current_weight": 0.65,
       "return_pct": -20.68,
       "contribution_pp": -0.17,
-      "day_return_pct": 4.98,
+      "day_return_pct": 4.96,
       "data_missing": false
     },
     {
@@ -547,9 +547,9 @@
       "bought": null,
       "sold": "2026-11-27",
       "cost_pct": 0.8,
-      "value_pct": 0.9416,
+      "value_pct": 0.941,
       "current_weight": 0.0,
-      "return_pct": 17.7,
+      "return_pct": 17.63,
       "contribution_pp": 0.14,
       "day_return_pct": null,
       "data_missing": false
@@ -565,7 +565,7 @@
       "cost_pct": 0.8,
       "value_pct": 0.548,
       "current_weight": 0.0,
-      "return_pct": -31.51,
+      "return_pct": -31.5,
       "contribution_pp": -0.25,
       "day_return_pct": null,
       "data_missing": false
@@ -581,7 +581,7 @@
       "cost_pct": 0.8,
       "value_pct": 0.738,
       "current_weight": 0.0,
-      "return_pct": -7.75,
+      "return_pct": -7.74,
       "contribution_pp": -0.06,
       "day_return_pct": null,
       "data_missing": false
@@ -627,11 +627,11 @@
       "bought": null,
       "sold": null,
       "cost_pct": 2.0,
-      "value_pct": 1.9808,
+      "value_pct": 1.9805,
       "current_weight": 2.03,
-      "return_pct": -0.96,
+      "return_pct": -0.98,
       "contribution_pp": -0.02,
-      "day_return_pct": -1.18,
+      "day_return_pct": -1.2,
       "data_missing": false
     },
     {
@@ -658,12 +658,12 @@
       "status": "held",
       "bought": "2026-11-27",
       "sold": null,
-      "cost_pct": 1.1133,
-      "value_pct": 1.1133,
+      "cost_pct": 1.1131,
+      "value_pct": 1.1131,
       "current_weight": 1.14,
       "return_pct": 0.0,
       "contribution_pp": 0.0,
-      "day_return_pct": 1.99,
+      "day_return_pct": 2.01,
       "data_missing": false
     },
     {
@@ -674,12 +674,12 @@
       "status": "held",
       "bought": "2026-11-27",
       "sold": null,
-      "cost_pct": 1.1133,
-      "value_pct": 1.1133,
+      "cost_pct": 1.1131,
+      "value_pct": 1.1131,
       "current_weight": 1.14,
       "return_pct": 0.0,
       "contribution_pp": 0.0,
-      "day_return_pct": 4.58,
+      "day_return_pct": 4.57,
       "data_missing": false
     },
     {
@@ -690,8 +690,8 @@
       "status": "held",
       "bought": "2026-11-27",
       "sold": null,
-      "cost_pct": 1.1133,
-      "value_pct": 1.1133,
+      "cost_pct": 1.1131,
+      "value_pct": 1.1131,
       "current_weight": 1.14,
       "return_pct": 0.0,
       "contribution_pp": 0.0,
@@ -706,8 +706,8 @@
       "status": "held",
       "bought": "2026-11-27",
       "sold": null,
-      "cost_pct": 1.1133,
-      "value_pct": 1.1133,
+      "cost_pct": 1.1131,
+      "value_pct": 1.1131,
       "current_weight": 1.14,
       "return_pct": 0.0,
       "contribution_pp": 0.0,
