@@ -11,7 +11,7 @@
     "changes": [
       {
         "date": "2026-11-27",
-        "text": "Cut Robotis, Laifual, UBTech, Ouster and Regal Rexnord; added Hexagon, Fanuc, Rockwell Automation and Mettler-Toledo. Main reason was to move away from humanoid robot companies into precision automation suppliers, to better reflect the thesis."
+        "text": "Cut Robotis, Laifual, UBTech, Ouster, Regal Rexnord and AeroVironment; added Hexagon, Fanuc, Rockwell Automation and Mettler-Toledo. Main reason was to move away from humanoid robot companies into precision automation suppliers, to better reflect the thesis."
       }
     ]
   },
