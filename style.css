@@ -240,6 +240,7 @@ a { color: var(--link); }
 .co.show-tick + .co-tick { display: block; }
 .terminal tr.total td { border-top: 2px solid var(--t-muted); border-bottom: 0; padding-top: 9px; }
 .terminal tr.total .v, .terminal tr.total td:first-child { font-weight: 700; }
+.sold-note { margin: 10px 0 0; font-size: 13px; line-height: 1.55; color: var(--t-muted); }
 .writeup { margin-top: 14px; border-top: 1px solid var(--t-rule); }
 .writeup > summary {
   list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
