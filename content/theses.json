@@ -1,10 +1,20 @@
 {
-  "Meta": { "summary": "", "milestones": [] },
-  "Alphabet": { "summary": "", "milestones": [] },
-  "TSMC": { "summary": "", "milestones": [] },
-  "Pets": { "summary": "", "milestones": [] },
-  "GLP-1": { "summary": "", "milestones": [] },
-  "Robotics": { "summary": "", "milestones": [] },
-  "Water": { "summary": "", "milestones": [] },
-  "Reinsurance": { "summary": "", "milestones": [] }
+  "Meta": { "summary": "", "milestones": [], "sources": [], "changes": [] },
+  "Alphabet": { "summary": "", "milestones": [], "sources": [], "changes": [] },
+  "TSMC": { "summary": "", "milestones": [], "sources": [], "changes": [] },
+  "Pets": { "summary": "", "milestones": [], "sources": [], "changes": [] },
+  "GLP-1": { "summary": "", "milestones": [], "sources": [], "changes": [] },
+  "Automation": {
+    "summary": "",
+    "milestones": [],
+    "sources": [],
+    "changes": [
+      {
+        "date": "2026-11-27",
+        "text": "Cut Robotis, Laifual, UBTech, Ouster and Regal Rexnord; added Hexagon, Fanuc, Rockwell Automation and Mettler-Toledo. Main reason was to move away from humanoid robot companies into precision automation suppliers, to better reflect the thesis."
+      }
+    ]
+  },
+  "Water": { "summary": "", "milestones": [], "sources": [], "changes": [] },
+  "Reinsurance": { "summary": "", "milestones": [], "sources": [], "changes": [] }
 }
