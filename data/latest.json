@@ -1,8 +1,8 @@
 {
   "inception": "2026-11-02",
   "as_of": "2026-11-27",
-  "portfolio_return_pct": -2.62,
-  "portfolio_day_return_pct": 1.36,
+  "portfolio_return_pct": -2.61,
+  "portfolio_day_return_pct": 1.37,
   "benchmarks": {
     "SPY": -3.16,
     "QQQ": -4.42
@@ -19,18 +19,18 @@
     {
       "thesis": "Automation",
       "target_weight": 12.0,
-      "current_weight": 10.68,
-      "return_pct": -13.3,
-      "contribution_pp": -1.6,
-      "day_return_pct": 2.87
+      "current_weight": 10.69,
+      "return_pct": -13.28,
+      "contribution_pp": -1.59,
+      "day_return_pct": 2.89
     },
     {
       "thesis": "GLP-1",
       "target_weight": 15.0,
       "current_weight": 14.71,
-      "return_pct": -4.47,
+      "return_pct": -4.46,
       "contribution_pp": -0.67,
-      "day_return_pct": -0.63
+      "day_return_pct": -0.62
     },
     {
       "thesis": "META",
@@ -52,9 +52,9 @@
       "thesis": "Reinsurance",
       "target_weight": 6.0,
       "current_weight": 6.12,
-      "return_pct": -0.69,
+      "return_pct": -0.67,
       "contribution_pp": -0.04,
-      "day_return_pct": -0.85
+      "day_return_pct": -0.83
     },
     {
       "thesis": "TSMC",
@@ -243,11 +243,11 @@
       "bought": null,
       "sold": null,
       "cost_pct": 3.0,
-      "value_pct": 2.2804,
+      "value_pct": 2.2816,
       "current_weight": 2.34,
-      "return_pct": -23.99,
+      "return_pct": -23.95,
       "contribution_pp": -0.72,
-      "day_return_pct": -4.66,
+      "day_return_pct": -4.6,
       "data_missing": false
     },
     {
@@ -371,11 +371,11 @@
       "bought": null,
       "sold": null,
       "cost_pct": 0.8,
-      "value_pct": 0.7835,
+      "value_pct": 0.7838,
       "current_weight": 0.8,
-      "return_pct": -2.07,
+      "return_pct": -2.03,
       "contribution_pp": -0.02,
-      "day_return_pct": 3.5,
+      "day_return_pct": 3.54,
       "data_missing": false
     },
     {
@@ -387,11 +387,11 @@
       "bought": null,
       "sold": null,
       "cost_pct": 0.8,
-      "value_pct": 0.6533,
+      "value_pct": 0.6535,
       "current_weight": 0.67,
-      "return_pct": -18.34,
+      "return_pct": -18.31,
       "contribution_pp": -0.15,
-      "day_return_pct": 3.9,
+      "day_return_pct": 3.94,
       "data_missing": false
     },
     {
@@ -403,11 +403,11 @@
       "bought": null,
       "sold": null,
       "cost_pct": 0.8,
-      "value_pct": 0.6144,
+      "value_pct": 0.6147,
       "current_weight": 0.63,
-      "return_pct": -23.2,
+      "return_pct": -23.17,
       "contribution_pp": -0.19,
-      "day_return_pct": 4.21,
+      "day_return_pct": 4.25,
       "data_missing": false
     },
     {
@@ -435,11 +435,11 @@
       "bought": null,
       "sold": null,
       "cost_pct": 0.8,
-      "value_pct": 0.6825,
+      "value_pct": 0.6827,
       "current_weight": 0.7,
-      "return_pct": -14.68,
+      "return_pct": -14.66,
       "contribution_pp": -0.12,
-      "day_return_pct": 1.46,
+      "day_return_pct": 1.49,
       "data_missing": false
     },
     {
@@ -499,11 +499,11 @@
       "bought": null,
       "sold": null,
       "cost_pct": 0.8,
-      "value_pct": 0.6843,
+      "value_pct": 0.6844,
       "current_weight": 0.7,
-      "return_pct": -14.47,
+      "return_pct": -14.45,
       "contribution_pp": -0.12,
-      "day_return_pct": -1.08,
+      "day_return_pct": -1.06,
       "data_missing": false
     },
     {
@@ -515,11 +515,11 @@
       "bought": null,
       "sold": null,
       "cost_pct": 0.8,
-      "value_pct": 0.6345,
+      "value_pct": 0.6348,
       "current_weight": 0.65,
-      "return_pct": -20.68,
+      "return_pct": -20.65,
       "contribution_pp": -0.17,
-      "day_return_pct": 4.96,
+      "day_return_pct": 5.0,
       "data_missing": false
     },
     {
@@ -547,9 +547,9 @@
       "bought": null,
       "sold": "2026-11-27",
       "cost_pct": 0.8,
-      "value_pct": 0.941,
+      "value_pct": 0.9418,
       "current_weight": 0.0,
-      "return_pct": 17.63,
+      "return_pct": 17.73,
       "contribution_pp": 0.14,
       "day_return_pct": null,
       "data_missing": false
@@ -579,7 +579,7 @@
       "bought": null,
       "sold": "2026-11-27",
       "cost_pct": 0.8,
-      "value_pct": 0.738,
+      "value_pct": 0.7381,
       "current_weight": 0.0,
       "return_pct": -7.74,
       "contribution_pp": -0.06,
@@ -611,11 +611,11 @@
       "bought": null,
       "sold": null,
       "cost_pct": 2.0,
-      "value_pct": 2.0203,
+      "value_pct": 2.0207,
       "current_weight": 2.07,
-      "return_pct": 1.01,
+      "return_pct": 1.04,
       "contribution_pp": 0.02,
-      "day_return_pct": -0.96,
+      "day_return_pct": -0.94,
       "data_missing": false
     },
     {
@@ -627,11 +627,11 @@
       "bought": null,
       "sold": null,
       "cost_pct": 2.0,
-      "value_pct": 1.9805,
+      "value_pct": 1.9815,
       "current_weight": 2.03,
-      "return_pct": -0.98,
+      "return_pct": -0.92,
       "contribution_pp": -0.02,
-      "day_return_pct": -1.2,
+      "day_return_pct": -1.15,
       "data_missing": false
     },
     {
@@ -658,12 +658,12 @@
       "status": "held",
       "bought": "2026-11-27",
       "sold": null,
-      "cost_pct": 1.1131,
-      "value_pct": 1.1131,
+      "cost_pct": 1.1133,
+      "value_pct": 1.1133,
       "current_weight": 1.14,
       "return_pct": 0.0,
       "contribution_pp": 0.0,
-      "day_return_pct": 2.01,
+      "day_return_pct": 2.02,
       "data_missing": false
     },
     {
@@ -674,12 +674,12 @@
       "status": "held",
       "bought": "2026-11-27",
       "sold": null,
-      "cost_pct": 1.1131,
-      "value_pct": 1.1131,
+      "cost_pct": 1.1133,
+      "value_pct": 1.1133,
       "current_weight": 1.14,
       "return_pct": 0.0,
       "contribution_pp": 0.0,
-      "day_return_pct": 4.57,
+      "day_return_pct": 4.61,
       "data_missing": false
     },
     {
@@ -690,8 +690,8 @@
       "status": "held",
       "bought": "2026-11-27",
       "sold": null,
-      "cost_pct": 1.1131,
-      "value_pct": 1.1131,
+      "cost_pct": 1.1133,
+      "value_pct": 1.1133,
       "current_weight": 1.14,
       "return_pct": 0.0,
       "contribution_pp": 0.0,
@@ -706,8 +706,8 @@
       "status": "held",
       "bought": "2026-11-27",
       "sold": null,
-      "cost_pct": 1.1131,
-      "value_pct": 1.1131,
+      "cost_pct": 1.1133,
+      "value_pct": 1.1133,
       "current_weight": 1.14,
       "return_pct": 0.0,
       "contribution_pp": 0.0,
